@@ -29,7 +29,7 @@ gem 'omniauth-facebook'
 gem 'cancancan', '~> 1.12.0'
 gem 'carrierwave'
 gem 'rack-pjax', github: 'afcapel/rack-pjax'
-gem 'remotipart', github: 'mshibuya/remotipart', ref: '3a6acb3'
+gem 'remotipart', github: 'mshibuya/remotipart'#, ref: '3a6acb3'
 gem 'aasm'
 
 group :development, :test do

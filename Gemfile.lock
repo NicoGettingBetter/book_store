@@ -8,8 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/mshibuya/remotipart.git
-  revision: 3a6acb36d46d6769faba6bd94ed7f831321f6c6a
-  ref: 3a6acb3
+  revision: 88d9a7d55bde66acb6cf3a3c6036a5a1fc991d5e
   specs:
     remotipart (1.2.1)
 
