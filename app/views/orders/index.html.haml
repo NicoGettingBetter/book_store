@@ -1,0 +1,42 @@
+%table.center
+  %td.left
+    %h1= t(:orders)
+- unless order_in_progress_items(current_user).empty?
+  %table.center.left
+    %tr
+      %td.underline
+        %h2= t(:in_progress)
+  %table.underline-thin.center
+    %tr
+      %th 
+      %th= t(:book)
+      %th= t(:price)
+      %th= t(:qty)
+      %th= t(:total)
+    - order_in_progress_items(current_user).each do |order_item|
+      %tr
+        %td
+          = image_tag order_item.book.image, class: 'small'
+        %td
+          %table.left
+            %tr
+              %td
+                %h2= order_item.book.title
+            %tr
+              %td
+                = order_item.book.short_description
+        %td
+          = price(order_item.price)
+        %td
+          = order_item.quantity
+        %td
+          = price(order_item.total)
+  %table.underline-thin.center.right
+    %tr
+      %td
+        = "#{t(:subtotal)}: #{price(current_order.subtotal)}"
+  %table.center
+    %tr
+      %td.left
+        = button_to t(:go_to_cart), edit_order_path(current_order.id), method: :get
+= render partial: 'orders', collection: methods, as: :method

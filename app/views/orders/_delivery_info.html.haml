@@ -1,0 +1,5 @@
+%table
+  - object.attributes.without('id', 'created_at', 'updated_at', 'order_id', 'price').keys.each do |attribute|
+    %tr
+      %td.left.low
+        = object.send(attribute)

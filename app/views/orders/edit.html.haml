@@ -1,0 +1,57 @@
+- if presenter.order.empty?
+  %h2.center= t(:you_have_an_empty_cart)
+- else
+  = form_for presenter.order, method: :put do |f|
+    - if errors = @form.try(:errors)
+      #error_explanation.center
+        %h2= "#{pluralize(errors.count, "error")} prohibited this coupon from being saved:"
+        %ul.left
+          - errors.full_messages.each do |msg|
+            %li= msg
+    %table.underline.center
+      %tr
+        %th 
+        %th= t(:book)
+        %th= t(:price)
+        %th= t(:qty)
+        %th= t(:total)
+      - presenter.order.order_items.each do |order_item|
+        %tr
+          = f.fields_for 'order_items[]', order_item do |ff|
+            %td
+              = image_tag order_item.book.image, class: 'small'
+            %td
+              %table.left
+                %tr
+                  %td
+                    %h2= order_item.book.title
+                %tr
+                  %td
+                    = order_item.book.short_description
+            %td
+              = price(order_item.price)
+            %td
+              = ff.number_field :quantity, value: order_item.quantity, in: 1..order_item.book.instock, class: 'hundred'
+            %td
+              = price(order_item.quantity * order_item.price)
+            %td
+              = link_to 'x', order_item, method: :delete, id: order_item.id
+    %table.underline.center.right
+      %tr
+        %td
+          = "#{t(:sale)}: #{price(presenter.order.sale)}"
+      %tr
+        %td
+          = "#{t(:subtotal)}: #{price(presenter.order.subtotal)}"
+    %table.center.fixed
+      %tr
+        %td
+          = link_to t(:empty_cart), order_path(current_order.id), method: :delete, class: 'middle-btn-red'
+        %td
+          = link_to t(:continue_shopping), shop_path, class: 'middle-btn'
+        %td
+          = f.text_field :coupon, value: '', placeholder: t(:coupon_code), class: 'middle'
+        %td
+          = f.submit t(:update), class: 'middle'
+        %td
+          = link_to t(:checkout), edit_address_order_path, class: 'middle-btn'

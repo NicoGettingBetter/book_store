@@ -1,0 +1,8 @@
+%table
+  - object.attributes.without('id', 'created_at', 'updated_at', 'order_id', 'country_id').keys.each do |attribute|
+    %tr
+      %td.left.low
+        = object.send(attribute)
+  %tr
+    %td.left.low
+      = object.country

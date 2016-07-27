@@ -1,0 +1,32 @@
+%table.center
+  %tr
+    %td
+    %td.underline
+      = t(:address)
+    %td.left
+      = presenter.header_after :address
+= form_for presenter.order, url: address_order_path, method: :put do |f|
+  %table.center
+    %tr
+      %th
+        %h2= t(:billing_address)
+      %th
+        %h2= t(:shipping_address)
+      %th
+        %h2= t(:order_summary)
+    %tr
+      %td.top
+        = fields_for :billing_address, presenter.billing_address do |billing_address_f|
+          = render partial: 'address_form', locals: { f: billing_address_f, type: :billing_address }
+      %td.top.shipping_address
+        = fields_for :shipping_address, presenter.shipping_address do |shipping_address_f|
+          = render partial: 'address_form', locals: { f: shipping_address_f, type: :shipping_address }
+        = fields_for :use_billing_address do |use_f|
+          .item
+            = use_f.check_box :check, checked: presenter.same_address 
+            = use_f.label t(:use_billing_address)
+      %td.top
+        = render partial: 'order_form', locals: { order: current_order }
+    %tr
+      %td
+        = f.submit t(:save_and_continue)

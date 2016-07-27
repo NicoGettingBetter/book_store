@@ -1,0 +1,30 @@
+%table.center
+  %tr
+    %td.right
+      = presenter.header_before :delivery
+    %td.underline
+      = t(:delivery)
+    %td.left
+      = presenter.header_after :delivery
+- @order = current_user.current_order
+= form_for delivery_order_path, method: :put do |f|
+  %table.center
+    %tr
+      %th
+      %th
+      %th
+        = t(:order_summary)
+    %tr
+      %td
+        %table
+          - presenter.deliveries.sort.each do |delivery|
+            %tr
+              %td.top
+                = f.radio_button :shipping, delivery.id, checked: (presenter.delivery == delivery)
+                = f.label :"shipping_#{delivery.id}", "#{delivery.company} #{delivery.delivery_method} + #{price(delivery.price)}"
+      %td
+      %td.top.right
+        = render partial: 'order_form', locals: { order: current_user.current_order }
+    %tr
+      %td
+        = f.submit t(:save_and_continue)

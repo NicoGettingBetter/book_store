@@ -1,0 +1,11 @@
+%table
+  %tr
+    %td.right
+      = t(:item_total)
+    %td.left
+      = price presenter.order.subtotal
+  %tr
+    %td.right
+      = t(:order_total)
+    %td.left
+      = price presenter.order.total

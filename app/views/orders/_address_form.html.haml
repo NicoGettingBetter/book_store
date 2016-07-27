@@ -1,0 +1,44 @@
+- if presenter.send(type).errors.any?
+  - errors = presenter.send(type).errors
+  #error_explanation.middle
+    %h2= "#{pluralize(errors.count, "error")} prohibited this address from being saved:"
+    %ul.left
+      - errors.full_messages.each do |msg|
+        %li= msg
+= f.hidden_field :id, value: presenter.send(type).id
+%table
+  %tr
+    %td.right
+      = f.label requires_field t(:first_name)
+    %td.left
+      = f.text_field :first_name, value: presenter.first_name(type), class: 'middle'
+  %tr
+    %td.right
+      = f.label requires_field t(:last_name)
+    %td.left
+      = f.text_field :last_name, value: presenter.last_name(type), class: 'middle'
+  %tr
+    %td.right
+      = f.label requires_field t(:street)
+    %td.left
+      = f.text_field :street, value: presenter.street(type), class: 'middle'
+  %tr
+    %td.right
+      = f.label requires_field t(:city)
+    %td.left
+      = f.text_field :city, value: presenter.city(type), class: 'middle'
+  %tr
+    %td.right
+      = f.label requires_field t(:country)
+    %td.left
+      = f.select :country_id, countries, { selected: presenter.country_id(type), prompt: t(:please_select_country) }, { class: 'middle' }
+  %tr
+    %td.right
+      = f.label requires_field t(:zip)
+    %td.left
+      = f.number_field :zipcode, value: presenter.zipcode(type), class: 'middle'
+  %tr
+    %td.right
+      = f.label requires_field t(:phone)
+    %td.left
+      = f.telephone_field :phone, value: presenter.phone(type), class: 'middle'

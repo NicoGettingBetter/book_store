@@ -1,0 +1,27 @@
+- if presenter.credit_card.errors.any?
+  - errors = presenter.credit_card.errors
+  #error_explanation
+    %h2= "#{pluralize(errors.count, "error")} prohibited this credit_card from being saved:"
+    %ul
+      - errors.full_messages.each do |msg|
+        %li= msg
+= fields_for presenter.credit_card do |f|
+  %table
+    %tr
+      %td.left
+        = f.label t(:card_number)
+      %td
+        = f.text_field :number, value: presenter.credit_card.number
+    %tr
+      %td.left
+        = f.label "#{t(:expiration_date)}:"
+    %tr
+      %td.right
+        = f.select :expiration_month, months, { prompt: t(:please_select_month)}, { class: 'middle' }
+      %td.left
+        = f.select :expiration_year, (2017..2030).to_a, { prompt: t(:please_select_year)}, { class: 'middle' }
+    %tr
+      %td.right
+        = f.label :cvv, t('cvv')
+      %td.left
+        = f.password_field :cvv
