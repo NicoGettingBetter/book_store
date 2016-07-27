@@ -1,0 +1,48 @@
+= form_for presenter.send(type) do |f|
+  - if presenter.send(type).errors.any?
+    #error_explanation
+      %h2= "#{pluralize(presenter.send(type).errors.count, "error")} prohibited this address from being saved:"
+      %ul
+        - presenter.send(type).errors.full_messages.each do |msg|
+          %li.left= msg
+  = f.hidden_field :type, value: type
+  %table.fixed
+    %tr
+      %th.right.hundred
+        = f.label t(:first_name)
+      %td.left
+        = f.text_field :first_name, autofocus: true, value: presenter.first_name(type)
+    %tr
+      %th.right
+        = f.label t(:last_name)
+      %td.left
+        = f.text_field :last_name, value: presenter.last_name(type)
+    %tr
+      %th.right
+        = f.label t(:street)
+      %td.left
+        = f.text_field :street, value: presenter.street(type)
+    %tr
+      %th.right
+        = f.label t(:city)
+      %td.left
+        = f.text_field :city, value: presenter.city(type)
+    %tr
+      %th.right
+        = f.label t(:country)
+      %td.left
+        = f.select :country_id, presenter.countries, { selected: presenter.country(type), prompt: t(:please_select_country) }
+    %tr
+      %th.right
+        = f.label t(:zip)
+      %td.left
+        = f.number_field :zipcode, value: presenter.zipcode(type)
+    %tr
+      %th.right
+        = f.label t(:phone)
+      %td.left
+        = f.telephone_field :phone, value: presenter.phone(type)
+  %table.center
+    %tr
+      %td
+        = f.submit t(:save)
