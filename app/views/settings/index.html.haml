@@ -1,0 +1,24 @@
+%table.center
+  %tr
+    %td.left
+      %h2= t(:settings)
+  %tr
+    %th.underline.left
+      = t(:billing_address)
+    %th.left.underline
+      = t(:shipping_address)
+  %tr
+    %td.top
+      = render address_path, type: :default_billing_address
+    %td.top
+      = render address_path, type: :default_shipping_address
+  %tr
+    %th.left.underline
+      = t(:email)
+    %th.left.underline
+      = t(:password)
+  %tr
+    %td.top
+      = render user_edit_email_path
+    %td.top
+      = render user_edit_password_path

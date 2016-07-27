@@ -1,0 +1,32 @@
+%div
+  %table.center
+    %tr
+      %th.left
+        %h2= book.title
+        = presenter.by_authors book
+        = presenter.authors_links book
+    %tr
+      %td
+        %table
+          %tr
+            %td
+              = presenter.image book, class: 'large'
+            %td.top
+              %table
+                %tr
+                  %td.left
+                    = presenter.description book
+                %tr
+                  %table
+                    %tr
+                      %td
+                        = book.decorated_price
+                      %td
+                        = form_for @form do |f|
+                          = f.hidden_field :book_id, value: book.id
+                          = f.hidden_field :price, value: book.price
+                          %table
+                            %td
+                              = f.number_field :quantity, value: 1, in: 1..book.instock, class: 'short'
+                            %td
+                              = f.submit t(:add_to_cart)
