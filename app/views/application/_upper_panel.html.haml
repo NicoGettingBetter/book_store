@@ -1,0 +1,17 @@
+%table.upper
+  %tr.name
+    %td.fifty.left.tab
+      %h2= link_to(t(:shop_name), root_path)
+  %tr
+    %table.upper
+      %tr.links
+        %th= link_to(t(:home), root_path)
+        %th= link_to(t(:shop), shop_path)
+        - if user_signed_in?
+          %th= link_to(image_tag('cart.png', size: '15x15') + "#{cart}", edit_order_path(current_order.id))
+          %th= link_to t(:settings), settings_path
+          %th= link_to t(:orders), orders_path
+          %th= link_to(t(:sign_out), destroy_user_session_path, method: :delete)
+        - else
+          %th= link_to(t(:sign_in), new_user_session_path)
+          %th= link_to(t(:sign_up), new_user_registration_path)
