@@ -88,7 +88,5 @@ Rails.application.configure do
 
   Devise::SessionsController.skip_before_action :authenticate_user!, raise: false
 
-  config.assets.precompile += %w( carousel.js jquery.raty.js ratyrate.js )
-
-  config.public_file_server.enabled = true
+  config.serve_static_files = true
 end
