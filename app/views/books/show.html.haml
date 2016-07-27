@@ -1,0 +1,59 @@
+%table.center
+  %tr
+    %td.top.left
+      %h2= presenter.book.title
+      = presenter.by_authors
+      = presenter.authors_links
+%table.center
+  %tr
+    %td
+      = presenter.image presenter.book, class: :large
+    %td.top.left
+      %table
+        %tr
+          %td
+            %table
+              %tr
+                %td
+                  = presenter.book.decorated_price
+                %td
+                  = form_for OrderItem.new do |f|
+                    = f.hidden_field :book_id, value: presenter.book.id
+                    = f.hidden_field :price, value: presenter.book.price
+                    %table
+                      %tr
+                        %td
+                          = f.number_field :quantity, value: 1, in: 1..presenter.book.instock, class: 'short'
+                        %td
+                          = f.submit t(:add_to_cart)
+        %tr
+          %td
+            .xs= presenter.description
+- if can? :create, Review
+  %table.center
+    %tr
+      %td.top.left
+        %h3= t(:reviews)
+    = form_for presenter.review do |f|
+      = f.hidden_field :book_id, value: presenter.book.id
+      = f.hidden_field :id, value: presenter.review.id
+      %tr
+        %td
+          = rating_for presenter.review, 'rating'
+      %tr
+        %td
+          = f.text_area :text, width: '100%'
+      %tr
+        %td
+          = f.submit t(:comment)
+- presenter.approved_reviews.each do |review|
+  %table.center.underline
+    %tr
+      %td.top.left
+        = review.user.decorate.full_name
+    %tr
+      %td.top.left
+        = rating_for review, 'rating'
+    %tr
+      %td.top.left
+        = review.text
