@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.3.0'
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
@@ -29,7 +30,7 @@ gem 'omniauth-facebook'
 gem 'cancancan', '~> 1.12.0'
 gem 'carrierwave'
 gem 'rack-pjax', github: 'afcapel/rack-pjax'
-gem 'remotipart', github: 'mshibuya/remotipart'#, ref: '3a6acb3'
+gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'aasm'
 
 group :development, :test do

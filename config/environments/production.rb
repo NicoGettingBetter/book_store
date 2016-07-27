@@ -90,5 +90,5 @@ Rails.application.configure do
 
   config.assets.precompile += %w( carousel.js )
 
-  config.serve_static_files = true
+  config.public_file_server.enabled = true
 end
