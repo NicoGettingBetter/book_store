@@ -12,4 +12,241 @@
  *
  *= require_tree .
  *= require_self
+ *= require owl.carousel
+ *= require owl.theme
  */
+ html {
+  font-family: Courier New;
+ }
+
+table {
+  font-size: 12px;
+}
+
+.low {
+  line-height: 15px;
+}
+
+.middle-btn {
+  display: block;
+  width: 150px;
+  height: 21px;
+  padding: 10px;
+  border: 2px solid #aaa;
+  color:#000;
+  text-decoration:none;
+  background: #3c3;
+}
+
+.middle-btn:active {
+  background: #0a0;
+}
+
+a.middle-btn {
+  text-decoration: none;
+  color: #000;
+
+  &:visited {
+    color: #000;
+  }
+
+  &:hover {
+    color: #000;
+    background-color: #fff;
+  }
+}
+
+.middle-btn-red {
+  display: block;
+  width: 150px;
+  height: 21px;
+  padding: 10px;
+  border: 2px solid #aaa;
+  color:#000;
+  text-decoration:none;
+  background: #c33;
+}
+
+.middle-btn-red:active {
+  background: #a00;
+}
+
+a.middle-btn-red {
+  text-decoration: none;
+  color: #000;
+
+  &:visited {
+    color: #000;
+  }
+
+  &:hover {
+    color: #000;
+    background-color: #fff;
+  }
+}
+
+select {
+  width: 324px;
+  padding: 10px;
+  background: #bfb;
+}
+
+select.middle {
+  width: 174px;
+}
+
+img.small {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+img.middle {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+img.large {
+  max-width: 350px;
+  max-height: 350px;
+}
+
+input {
+  width: 300px;
+  padding: 10px;
+  background: #bfb;
+  border: 2px solid #aaa;
+}
+
+input.middle {
+  width: 150px;
+}
+
+input.short {
+  width: 100px;
+}
+
+input[type = "number"].quantity {
+  width: 100px;
+}
+
+input[type = "submit"] {
+  height: 45px;
+  background: #3c3;
+}
+
+input[type = "submit"]:hover {
+  background: #fff;
+}
+
+input[type = "submit"]:active {
+  background: #0a0;
+}
+
+.btn:active {
+  background: white;
+}
+
+.fixed {
+  table-layout: fixed;
+}
+
+table.center {
+  width: 70%;
+  margin-left:15%; 
+  margin-right:15%;
+}
+
+input[type='checkbox'] {
+  float: left;
+  width: 20px;
+}
+
+input[type='checkbox'] + label {
+  text-align: left;
+  display: block;
+  width: 300px;
+}
+
+input[type='radio'] {
+  float: left;
+  width: 20px;
+}
+
+input[type='radio'] + label {
+  text-align: left;
+  display: block;
+  width: 300px;
+}
+
+.name {
+  background: #0a0
+}
+
+.links {
+  background: #3c3;
+  line-height: 20px;
+}
+
+.fifty {
+  width: 50%;
+}
+
+.tab {
+  padding-left: 50px;
+}
+
+.little {
+  font-size: 12px;
+}
+
+.xs {
+  font-size: 11px;
+  line-height: 18px;
+}
+
+.upper {
+  table-layout: fixed;
+  text-align: center;
+  width: 90%;
+  margin-left: 5%; 
+  margin-right: 5%;
+}
+
+.center {
+  text-align: center;
+}
+
+.top {
+  vertical-align: top;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.underline {
+  border-bottom: 2px solid;
+}
+
+.underline-thin {
+  border-bottom: 1px solid;
+}
+
+.hundred {
+  width: 100px;
+}
+
+.border {
+  border: 1px solid;
+}
+
+textarea {
+  width: 100%;
+  max-width: 920px;
+  min-height: 100px;
+  max-height: 300px;
+}
