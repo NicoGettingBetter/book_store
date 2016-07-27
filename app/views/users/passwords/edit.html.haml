@@ -1,0 +1,20 @@
+%h2= t('.change_your_password')
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  = devise_error_messages!
+  = f.hidden_field :reset_password_token
+  %table.center
+    %tr
+      %td.right
+    = f.label :password, t('.new_password')
+      %td.left
+    = f.password_field :password, autocomplete: "off"
+      %td.right
+    = f.label :password_confirmation, t('.confirm_new_password')
+      %td.left
+    = f.password_field :password_confirmation, autocomplete: "off"
+  %table.center
+    %tr
+      %td
+    = f.submit t('.change_my_password')
+
+= render "devise/shared/links"

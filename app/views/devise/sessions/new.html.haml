@@ -1,0 +1,24 @@
+%h2= t('.sign_in')
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  %table.center#session
+    %tr
+      %td.right
+        = f.label :email
+      %td.left
+        = f.email_field :email, autofocus: true
+    %tr
+      %td.right
+        = f.label :password
+      %td.left
+        = f.password_field :password, autocomplete: "off"
+    - if devise_mapping.rememberable?
+      %td.right
+        = f.check_box :remember_me
+      %td.left
+        = f.label :remember_me
+  %table.center
+    %tr
+      %td
+        = f.submit t('.sign_in')
+        
+= render "devise/shared/links"

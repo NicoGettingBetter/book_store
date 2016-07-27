@@ -1,0 +1,11 @@
+= form_for current_user, url: user_registration_path, html: { method: :put } do |f|
+  %table.fixed
+    %tr
+      %th.right.hundred
+        = f.label :email
+      %td.left
+        = f.email_field :email
+  %table.center
+    %tr
+      %td
+        = f.submit t(:save)
