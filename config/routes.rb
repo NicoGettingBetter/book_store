@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'users/email/edit_email', to: 'users/email#edit_email', as: 'user_edit_email'
   get 'users/passwords/edit_password', to: 'users/passwords#edit_password', as: 'user_edit_password'
 
+  get 'admin', to: 'rails_admin/main#dashboard', as: 'admin'
+
   resources :reviews, only: [:new, :update]
   resources :addresses, only: [:create, :update]
   resources :authors, only: :show

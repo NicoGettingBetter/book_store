@@ -1,7 +1,7 @@
-%table.center
-  %tr
-    %td.top.left
-      %h2= presenter.book.title
+.page-header
+  %h1
+    = presenter.book.title
+    %small
       = presenter.by_authors
       = presenter.authors_links
 %table.center
@@ -28,8 +28,12 @@
         %tr
           %td
             .xs= presenter.description
-- if can? :update, Review
-  = link_to t(:add_comment), new_review_path(book_id: presenter.book.id)
+.page-header
+  %h1
+    = t(:comments)
+    %small
+      - if can? :update, Review
+        = link_to t(:add_comment), new_review_path(book_id: presenter.book.id)
 - presenter.approved_reviews.each do |review|
   %table.center.underline
     %tr

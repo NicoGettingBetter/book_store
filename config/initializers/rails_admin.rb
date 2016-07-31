@@ -38,6 +38,24 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Review' do
+    show do
+      field :approved
+      field :user do 
+        pretty_value do          
+          "#{bindings[:object].user.first_name} #{bindings[:object].user.last_name}"
+        end
+      end
+      field :text
+    end
+    list do
+      field :approved
+      field :user do 
+        pretty_value do          
+          "#{bindings[:object].user.first_name} #{bindings[:object].user.last_name}"
+        end
+      end
+      field :text
+    end
     edit do
       field :approved
     end

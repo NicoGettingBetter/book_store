@@ -1,15 +1,8 @@
-%table.center
-  %tr
-    %th.left.underline
-      %h1.page-header= presenter.author.full_name
-  %tr
-    %td.left
-      = presenter.author.description
-  %tr 
-    %td
-      %table.center.fixed
-        - presenter.lines.each do |line|
-          %tr
-            - line.each do |book|
-              %td
-                = link_to (render book), book_path(book.id)
+%h1.page-header= presenter.author.full_name
+= presenter.author.description
+%table.center.fixed
+  - presenter.lines.each do |line|
+    %tr
+      - line.each do |book|
+        %td
+          = link_to (render book), book_path(book.id)
