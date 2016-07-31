@@ -16,11 +16,12 @@ class OrdersController < ApplicationController
     redirect_to root_path if cannot? :manage, Order
   end
 
-  def update
+  def update    
+    redirect_to root_path if cannot? :manage, Order
     @form = OrderForm.from_params(order_params, order_items: order_items_params)
     validate = [:order_items]
     validate << :coupon if order_params[:coupon] != ''
-    
+    #debugger
     UpdateOrder.call(@form, validate) do
       on(:ok) { redirect_to edit_order_path(id: current_order.id) }
       on(:invalid) { render 'edit' }
@@ -32,6 +33,7 @@ class OrdersController < ApplicationController
   end
 
   def order_address
+    redirect_to root_path if cannot? :manage, Order
     @form = OrderForm.new(billing_address: AddressForm.from_params(address_params(:billing_address),
       type: :billing_address))
     @form.same_address = params.require(:use_billing_address).permit(:check)[:check] == '1'
@@ -52,7 +54,10 @@ class OrdersController < ApplicationController
   end
 
   def order_delivery
-    @form = OrderForm.new(delivery: Delivery.find(delivery_params.to_i))
+    redirect_to root_path if cannot? :manage, Order
+    @form = OrderForm.new(delivery: DeliveryForm.new(id: delivery_params.to_i))
+    presenter.deliveries = Delivery.all if @form.invalid?
+
     UpdateOrder.call(@form, :delivery) do
       on(:ok) { redirect_to edit_payment_order_path }
       on(:invalid) { render 'edit_delivery' }
@@ -65,8 +70,10 @@ class OrdersController < ApplicationController
   end
 
   def order_payment
+    redirect_to root_path if cannot? :manage, Order
     @form = OrderForm.new(credit_card: CreditCardForm.new(credit_card_params))
     add_credit_card_to_presenter if @form.invalid?
+
     UpdateOrder.call(@form, :credit_card) do
       on(:ok) { redirect_to edit_confirm_order_path }
       on(:invalid) { render 'edit_payment' }
@@ -78,6 +85,7 @@ class OrdersController < ApplicationController
   end
 
   def order_confirm
+    redirect_to root_path if cannot? :manage, Order
     @form = OrderForm.new()
     UpdateOrder.call(@form, :order) do
       on(:ok) { redirect_to complete_order_path }
@@ -89,6 +97,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    redirect_to root_path if cannot? :manage, Order
     OrderItem.delete @order.order_items
     @order.delete
     respond_to do |format|
@@ -128,7 +137,7 @@ class OrdersController < ApplicationController
     end
 
     def delivery_params
-      params[edit_delivery_order_path][:shipping]
+      params.require(:order).permit(:shipping)[:shipping]
     end
 
     def add_credit_card_to_presenter

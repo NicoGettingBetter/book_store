@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 RSpec.configure do |config|
-  Capybara.javascript_driver = :webkit
+  config.include Warden::Test::Helpers
+  config.before :suite do
+    Warden.test_mode!
+  end
 end

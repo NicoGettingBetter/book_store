@@ -8,4 +8,14 @@ FactoryGirl.define do
     phone FFaker::PhoneNumberAU.international_phone_number
     country_id 1
   end
+
+  factory :address_empty, class: Address do
+    first_name ''
+    last_name ''
+    street ''
+    zipcode ''
+    city ''
+    phone ''
+    country_id ''
+  end
 end

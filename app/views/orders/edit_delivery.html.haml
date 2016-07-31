@@ -6,8 +6,14 @@
       = t(:delivery)
     %td.left
       = presenter.header_after :delivery
-- @order = current_user.current_order
-= form_for delivery_order_path, method: :put do |f|
+- if @form
+  - errors = @form.delivery.errors
+  #error_explanation.middle
+    %h2= "#{pluralize(errors.count, "error")} prohibited this delivery from being saved:"
+    %ul.left
+      - errors.full_messages.each do |msg|
+        %li= msg
+= form_for presenter.order, url: delivery_order_path, method: :put do |f|
   %table.center
     %tr
       %th

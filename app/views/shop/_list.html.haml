@@ -1,7 +1,5 @@
-%table
-  %tr
-    %th= t :categories
+%h3= t :categories
+%ul.list-group
   - presenter.categories_links.each do |link|
-    %tr
-      %td.category
-        = link
+    %li.list-group-item
+      = link

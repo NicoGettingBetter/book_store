@@ -1,5 +1,6 @@
 class CarouselPresenter < BasePresenter
   attribute :books, Book
+  attribute :order_item, OrderItem
 
   def by_authors book
     t(:by) if book.authors.any?

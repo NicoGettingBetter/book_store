@@ -28,7 +28,7 @@ class UpdateOrder < Rectify::Command
         else
           order_item.update(order_item_params(id))
         end
-     end
+      end if order_items
     end
 
     def order_items
@@ -44,7 +44,7 @@ class UpdateOrder < Rectify::Command
     end
 
     def set_or_update_coupon
-      current_order.coupon = Coupon.find_by(code: coupon)
+      current_order.update(coupon: Coupon.find_by(code: coupon))
     end
 
     def coupon
@@ -82,7 +82,7 @@ class UpdateOrder < Rectify::Command
     end
 
     def set_or_update_delivery
-      update_order(delivery: @form.delivery)
+      update_order(delivery: Delivery.find(@form.delivery.id))
     end
 
     def set_or_update_credit_card

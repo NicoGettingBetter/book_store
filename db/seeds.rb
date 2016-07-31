@@ -100,14 +100,8 @@ books = [
       price: rand(1.0..30.0).round(2),
       instock: rand(100..1000),
       categories: book[:categories],
-      authors: (0..(rand(1..4))).map{ Author.all.sample }) }
+      authors: (0..(rand(1..3))).map{ Author.all.sample }) }
   end.reduce(:merge)
-
-#100.times do
-#  Review.create(text: FFaker::CheesyLingo.paragraph(rand(5..10)),
-#                book: Book.all.sample,
-#                user: User.all.sample)
-#end
 
 [{code: '123456'},
  {code: '654321'},

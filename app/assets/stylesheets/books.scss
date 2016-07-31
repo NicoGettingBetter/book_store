@@ -1,7 +1,3 @@
-// Place all the styles related to the Books controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .books {
 	margin-left: 0%;
 	margin-right: 20%;
@@ -9,8 +5,10 @@
 }
 
 table.book {
+  text-align: center;
   margin-top: 30px;
-	margin-left: 0%;
-	margin-right: 20%;
-	width: 30%;
+	height: 300px;
+  width: 200px;
+  background: #fafafa;
+  border-radius: 4px;
 }

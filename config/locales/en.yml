@@ -84,3 +84,6 @@ en:
   back_to_orders: 'Back to orders'
   send_me_reset_password_instructions: "Send Me Reset Password Instructions"
   comment: 'Comment'
+  add_comment: 'Add comment'
+  new_comment: 'New comment'
+  comment_added: 'Your comment was added to list'

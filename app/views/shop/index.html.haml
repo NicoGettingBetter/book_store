@@ -1,8 +1,7 @@
+%h2.page-header= t(:shop)
 %table.center
   %tr
     %td
-      %h2.left.top= t(:shop)
-      - #debugger
       %h4.left.top= presenter.header
       %table.books
         - presenter.lines.each do |line|

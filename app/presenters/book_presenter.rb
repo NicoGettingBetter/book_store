@@ -1,8 +1,7 @@
 class BookPresenter < BasePresenter
   attribute :book, Book
-  attribute :review, Review
+  attribute :order_item, OrderItem
 
-  delegate :reviews, to: :book
   def approved_reviews
     Review.approved_reviews book
   end

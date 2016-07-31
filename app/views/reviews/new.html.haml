@@ -1,5 +1,14 @@
-%h1 New review
-
-= render 'form'
-
-= link_to 'Back', reviews_path
+- if @form && @form.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(@form.errors.count, "error")} prohibited this comment from being saved:"
+    %ul
+      - @form.errors.full_messages.each do |msg|
+        %li.left= msg
+%table.center
+  %tr
+    %td.top.left
+      %h3= t(:new_comment)
+= form_for @review do |f|
+  = rating_for @review, 'rating'
+  = f.text_area :text, width: '100%'
+  = f.submit t(:comment)

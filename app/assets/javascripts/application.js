@@ -17,6 +17,7 @@
 //= require owl.carousel
 //= require jquery.raty
 //= require ratyrate
+//= require bootstrap-sprockets
 //= require_tree .
 
 function popupCenter(url, width, height, name) {

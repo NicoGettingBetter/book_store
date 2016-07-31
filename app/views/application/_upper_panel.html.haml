@@ -1,17 +1,24 @@
-%table.upper
-  %tr.name
-    %td.fifty.left.tab
-      %h2= link_to(t(:shop_name), root_path)
-  %tr
-    %table.upper
-      %tr.links
-        %th= link_to(t(:home), root_path)
-        %th= link_to(t(:shop), shop_path)
+%nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{ 'data-toggle': 'collapse', 'data-target': '#menu', 'aria-expanded': 'false' }
+        %span.sr-only Toggle navigation
+        - 3.times do
+          %span.icon-bar
+
+    #menu.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-left
+        %li.active= link_to(t(:shop_name), root_path)
+        %li= link_to(t(:home), root_path)
+        %li= link_to(t(:shop), shop_path)
+      %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %th= link_to(image_tag('cart.png', size: '15x15') + "#{cart}", edit_order_path(current_order.id))
-          %th= link_to t(:settings), settings_path
-          %th= link_to t(:orders), orders_path
-          %th= link_to(t(:sign_out), destroy_user_session_path, method: :delete)
+          - if current_user.admin?
+            %li= link_to t(:admin), rails_admin_path
+          %li= link_to(image_tag('cart.png', size: '15x15') + "#{cart}", edit_order_path(current_order.id))
+          %li= link_to t(:settings), settings_path
+          %li= link_to t(:orders), orders_path
+          %li= link_to(t(:sign_out), destroy_user_session_path, method: :delete)
         - else
-          %th= link_to(t(:sign_in), new_user_session_path)
-          %th= link_to(t(:sign_up), new_user_registration_path)
+          %li= link_to(t(:sign_in), new_user_session_path)
+          %li= link_to(t(:sign_up), new_user_registration_path)

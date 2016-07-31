@@ -25,7 +25,7 @@ RSpec.describe AddressesController, :type => :controller do
 
   let(:user) { FactoryGirl.create(:user) }
 
-  before do 
+  before do     
     allow(controller).to receive(:current_user) { user } 
   end
 

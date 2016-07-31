@@ -5,13 +5,12 @@ class OrderForm < Rectify::Form
   attribute :same_address, Object
   attribute :credit_card, CreditCardForm
   attribute :coupon, Coupon
-  attribute :delivery, Delivery
+  attribute :delivery, DeliveryForm
 
   validates_length_of :coupon, is: 6, allow_blank: true
   validates :coupon, 
-    inclusion: { in: Coupon.all.map(&:code) << '' << nil, 
+    inclusion: { in: Coupon.all_available.map(&:code) << '' << nil, 
     message: 'not available' }
-  validates :delivery, inclusion: { in: Delivery.all.to_a << nil }
 
   def invalid?
     !valid?
@@ -29,6 +28,9 @@ class OrderForm < Rectify::Form
         errors.empty? && output
     elsif credit_card
       credit_card.valid? &&
+        errors.empty? && output
+    elsif delivery
+      delivery.valid? &&
         errors.empty? && output
     else
       errors.empty? && output

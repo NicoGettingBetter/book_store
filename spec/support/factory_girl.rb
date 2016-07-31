@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 RSpec.configure do |config|
-  #config.include FactoryGirl::Syntax::Methods
+  config.include FactoryGirl::Syntax::Methods
 end

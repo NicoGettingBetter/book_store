@@ -1,6 +1,6 @@
-%h2= t('.sign_in')
+%h2.page-header= t('.sign_in')
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  %table.center#session
+  %table.center
     %tr
       %td.right
         = f.label :email

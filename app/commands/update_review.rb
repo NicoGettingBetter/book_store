@@ -5,6 +5,6 @@ class UpdateReview < BaseCommand
 
   private
     def update_review
-      Review.find(@form.id).update(@form.attributes)
+      Review.find(@form.id).update(text: @form.text)
     end
 end

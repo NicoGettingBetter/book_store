@@ -37,16 +37,17 @@
             %td
               = link_to 'x', order_item, method: :delete, id: order_item.id
     %table.underline.center.right
-      %tr
-        %td
-          = "#{t(:sale)}: #{price(presenter.order.sale)}"
+      - if presenter.order.coupon
+        %tr
+          %td
+            = "#{t(:sale)}: #{price(presenter.order.sale)}"
       %tr
         %td
           = "#{t(:subtotal)}: #{price(presenter.order.subtotal)}"
     %table.center.fixed
       %tr
         %td
-          = link_to t(:empty_cart), order_path(current_order.id), method: :delete, class: 'middle-btn-red'
+          = link_to t(:empty_cart), order_path(current_order.id), method: :delete, class: 'middle-btn red'
         %td
           = link_to t(:continue_shopping), shop_path, class: 'middle-btn'
         %td
