@@ -129,3 +129,10 @@ input[type='radio'] + label {
 .hundred {
   width: 100px;
 }
+
+textarea {
+  width: 100%;
+  max-width: 920px;
+  min-height: 100px;
+  max-height: 300px;
+}

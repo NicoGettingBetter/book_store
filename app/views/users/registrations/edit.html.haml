@@ -1,6 +1,4 @@
-= render upper_panel_path
-
-%h2= t('.title', resource: resource_class.model_name.human)
+%h2.page-header= t('.title', resource: resource_class.model_name.human)
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!
   %table.center
@@ -36,5 +34,5 @@
 %p
   = t('.unhappy')
   ? #{link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete}.
-  
+
 = link_to t('devise.shared.links.back'), :back

@@ -1,11 +1,7 @@
-%table.center
-  %tr.left
-    %th
-      %h1= t(:order)
-  %tr.left
-    %th
-      = presenter.order.id
-%table.center
+%h1.page-header
+  = t(:order)
+  %small= presenter.order.id
+%table.throughout
   %tr.left
     %td
       %h3= t(:shipping_address)
@@ -14,7 +10,7 @@
     %td
       %h3= t(:shipments)
     %td
-      %h3= t(:payment_information) 
+      %h3= t(:payment_information)
   %tr
     %td.top
       = render 'address_info', object: presenter.order.billing_address.decorate
@@ -26,7 +22,7 @@
       = render 'credit_card_info', object: presenter.order.credit_card
 %table.underline.center
   %tr
-    %th 
+    %th
     %th= t(:book)
     %th= t(:price)
     %th= t(:qty)
@@ -49,14 +45,14 @@
         = order_item.quantity
       %td
         = price(order_item.total)
-%table.underline.center.right
+%table.throughout.right.page-header
   %tr
     %td
       = "#{t(:subtotal)}: #{price(presenter.order.subtotal)}"
   %tr
     %td
       = "#{t(:shipping)}: #{price(presenter.order.delivery.price)}"
-%table.underline.center.right
+%table.throughout.right
   %tr
     %td
       = "#{t(:order_total)}: #{price(presenter.order.total)}"

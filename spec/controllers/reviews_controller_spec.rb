@@ -6,8 +6,7 @@ RSpec.describe ReviewsController, :type => :controller do
   let(:valid_attributes) {
     {
       text: '11111',
-      book: book,
-      user: user
+      book: book
     }
   }
 

@@ -1,9 +1,6 @@
 - unless public_send(:"orders_#{method}", current_user).empty?
-  %table.center.left
-    %tr
-      %td.underline
-        %h2= t(method)
-  %table.underline-thin.center
+  %h2.page-header= t(method)
+  %table.throughout
     %tr
       %th= t(:number)
       %th= t(:completed_at)

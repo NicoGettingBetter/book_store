@@ -5,18 +5,18 @@ class OrdersController < ApplicationController
   helper AddressHelper
 
   def index
-    redirect_to root_path if cannot? :read, Order 
+    redirect_to root_path if cannot? :read, Order
   end
 
   def show
-    redirect_to root_path if cannot? :read, Order      
+    redirect_to root_path if cannot? :read, Order
   end
 
   def edit
     redirect_to root_path if cannot? :manage, Order
   end
 
-  def update    
+  def update
     redirect_to root_path if cannot? :manage, Order
     @form = OrderForm.from_params(order_params, order_items: order_items_params)
     validate = [:order_items]
@@ -137,6 +137,7 @@ class OrdersController < ApplicationController
     end
 
     def delivery_params
+      return 0 unless params[:order]
       params.require(:order).permit(:shipping)[:shipping]
     end
 

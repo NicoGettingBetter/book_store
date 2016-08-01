@@ -1,14 +1,9 @@
-%table.center
-  %td.left
-    %h1= t(:orders)
+%h1.page-header= t(:orders)
 - unless order_in_progress_items(current_user).empty?
-  %table.center.left
+  %h2.page-header= t(:in_progress)
+  %table.throughout
     %tr
-      %td.underline
-        %h2= t(:in_progress)
-  %table.underline-thin.center
-    %tr
-      %th 
+      %th
       %th= t(:book)
       %th= t(:price)
       %th= t(:qty)
@@ -31,7 +26,7 @@
           = order_item.quantity
         %td
           = price(order_item.total)
-  %table.underline-thin.center.right
+  %table.page-header.throughout.right
     %tr
       %td
         = "#{t(:subtotal)}: #{price(current_order.subtotal)}"

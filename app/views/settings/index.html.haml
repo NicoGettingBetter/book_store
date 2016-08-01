@@ -1,11 +1,9 @@
-%table.center
+%h1.page-header= t(:settings)
+%table.throughout
   %tr
-    %td.left
-      %h2= t(:settings)
-  %tr
-    %th.underline.left
+    %th.page-header.left
       = t(:billing_address)
-    %th.left.underline
+    %th.left.page-header
       = t(:shipping_address)
   %tr
     %td.top
@@ -13,9 +11,9 @@
     %td.top
       = render address_path, type: :default_shipping_address
   %tr
-    %th.left.underline
+    %th.left.page-header
       = t(:email)
-    %th.left.underline
+    %th.left.page-header
       = t(:password)
   %tr
     %td.top

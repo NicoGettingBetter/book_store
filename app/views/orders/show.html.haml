@@ -1,17 +1,12 @@
-%table.center
-  %tr.left
-    %td
-      = link_to "<< #{t(:back_to_orders)}", orders_path
-  %tr.left
-    %td
-      %h1= t(:order)
-    %td
-      %h3= presenter.order.id
-    %td
-      = presenter.order.state
+= link_to "<< #{t(:back_to_orders)}", orders_path
+%h1.page-header
+  = t(:order)
+  %small
+    = presenter.order.id
+    = presenter.order.state
 %table.underline.center
   %tr
-    %th 
+    %th
     %th= t(:book)
     %th= t(:price)
     %th= t(:qty)
@@ -34,14 +29,14 @@
         = order_item.quantity
       %td
         = price(order_item.total)
-%table.underline.center.right
+%table.page-header.throughout.right
   %tr
     %td
       = "#{t(:subtotal)}: #{price(presenter.order.subtotal)}"
   %tr
     %td
       = "#{t(:shipping)}: #{price(presenter.order.delivery.price)}"
-%table.underline.center.right
+%table.throughout.right
   %tr
     %td
       = "#{t(:order_total)}: #{price(presenter.order.total)}"

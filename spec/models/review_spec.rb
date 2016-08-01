@@ -1,12 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  [:user, 
-    :book].each do |field|
-      it { should belong_to(field) }
-    end
+  it { should belong_to(:book) }
 
-  context 'approved reviews' do 
+  context 'approved reviews' do
     let!(:book) { FactoryGirl.create(:book) }
 
     before do

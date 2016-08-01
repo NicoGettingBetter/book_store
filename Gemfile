@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.3.1'
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
@@ -13,7 +13,8 @@ gem 'devise', '~> 4.0'
 gem 'i18n', '~> 0.7'
 gem "mini_magick"
 gem 'owlcarousel-rails'
-gem 'rails_admin', '~> 0.8.1', github: 'sferik/rails_admin', branch: 'rails-5'
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
@@ -30,7 +31,6 @@ gem 'omniauth-facebook'
 gem 'cancancan', '~> 1.12.0'
 gem 'carrierwave'
 gem 'rack-pjax', github: 'afcapel/rack-pjax'
-gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'aasm'
 
 group :development, :test do

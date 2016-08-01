@@ -8,12 +8,12 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
   config.included_models = [
-    'Book', 
-    'Order', 
-    'Author', 
-    'Review', 
-    'Category', 
-    'Delivery', 
+    'Book',
+    'Order',
+    'Author',
+    'Review',
+    'Category',
+    'Delivery',
     'Coupon']
 
   ## == Cancan ==
@@ -40,21 +40,31 @@ RailsAdmin.config do |config|
   config.model 'Review' do
     show do
       field :approved
-      field :user do 
-        pretty_value do          
+      field :user do
+        formatted_value do
           "#{bindings[:object].user.first_name} #{bindings[:object].user.last_name}"
+        end
+      end
+      field :book do
+        formatted_value do
+          bindings[:object].title
         end
       end
       field :text
     end
     list do
+      field :text
       field :approved
-      field :user do 
-        pretty_value do          
+      field :user do
+        formatted_value do
           "#{bindings[:object].user.first_name} #{bindings[:object].user.last_name}"
         end
       end
-      field :text
+      field :book do
+        formatted_value do
+          bindings[:object].title
+        end
+      end
     end
     edit do
       field :approved
@@ -63,8 +73,8 @@ RailsAdmin.config do |config|
 
 
   config.actions do
-    dashboard                     
-    index                        
+    dashboard
+    index
     new do
       only ['Book', 'Author', 'Category', 'Delivery', 'Coupon']
     end

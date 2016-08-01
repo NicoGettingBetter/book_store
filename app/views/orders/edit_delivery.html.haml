@@ -1,11 +1,9 @@
-%table.center
-  %tr
-    %td.right
-      = presenter.header_before :delivery
-    %td.underline
-      = t(:delivery)
-    %td.left
-      = presenter.header_after :delivery
+.page-header
+  %small
+    = presenter.header_before :delivery
+  = t(:delivery)
+  %small
+    = presenter.header_after :delivery
 - if @form
   - errors = @form.delivery.errors
   #error_explanation.middle
@@ -22,12 +20,10 @@
         = t(:order_summary)
     %tr
       %td
-        %table
-          - presenter.deliveries.sort.each do |delivery|
-            %tr
-              %td.top
-                = f.radio_button :shipping, delivery.id, checked: (presenter.delivery == delivery)
-                = f.label :"shipping_#{delivery.id}", "#{delivery.company} #{delivery.delivery_method} + #{price(delivery.price)}"
+        - presenter.deliveries.sort.each do |delivery|
+          .item
+            = f.radio_button :shipping, delivery.id, checked: (presenter.delivery == delivery)
+            = f.label :"shipping_#{delivery.id}", "#{delivery.company} #{delivery.delivery_method} + #{price(delivery.price)}"
       %td
       %td.top.right
         = render partial: 'order_form', locals: { order: current_user.current_order }

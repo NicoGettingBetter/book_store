@@ -8,9 +8,9 @@
         %ul.left
           - errors.full_messages.each do |msg|
             %li= msg
-    %table.underline.center
+    %table
       %tr
-        %th 
+        %th
         %th= t(:book)
         %th= t(:price)
         %th= t(:qty)
@@ -36,7 +36,7 @@
               = price(order_item.quantity * order_item.price)
             %td
               = link_to 'x', order_item, method: :delete, id: order_item.id
-    %table.underline.center.right
+    %table.right.throghout
       - if presenter.order.coupon
         %tr
           %td
@@ -44,7 +44,7 @@
       %tr
         %td
           = "#{t(:subtotal)}: #{price(presenter.order.subtotal)}"
-    %table.center.fixed
+    %table
       %tr
         %td
           = link_to t(:empty_cart), order_path(current_order.id), method: :delete, class: 'middle-btn red'
