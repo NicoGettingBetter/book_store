@@ -88,5 +88,4 @@ Rails.application.configure do
 
   Devise::SessionsController.skip_before_action :authenticate_user!, raise: false
 
-  config.serve_static_files = true
 end
