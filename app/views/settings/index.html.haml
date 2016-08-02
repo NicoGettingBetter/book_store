@@ -7,9 +7,11 @@
       = t(:shipping_address)
   %tr
     %td.top
-      = render address_path, type: :default_billing_address
+      #billing_address
+        = render address_path, type: :default_billing_address
     %td.top
-      = render address_path, type: :default_shipping_address
+      #shipping_address
+        = render address_path, type: :default_shipping_address
   %tr
     %th.left.page-header
       = t(:email)

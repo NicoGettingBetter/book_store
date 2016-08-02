@@ -4,6 +4,7 @@
   = t(:delivery)
   %small
     = presenter.header_after :delivery
+%h1.page-header= t(:delivery)
 - if @form
   - errors = @form.delivery.errors
   #error_explanation.middle
@@ -12,11 +13,11 @@
       - errors.full_messages.each do |msg|
         %li= msg
 = form_for presenter.order, url: delivery_order_path, method: :put do |f|
-  %table.center
+  %table.throughout
     %tr
       %th
       %th
-      %th
+      %th.left
         = t(:order_summary)
     %tr
       %td

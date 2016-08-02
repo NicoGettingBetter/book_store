@@ -2,15 +2,16 @@
   = t(:address)
   %small
     = presenter.header_after :address
+%h1.page-header= t(:address)
 = form_for presenter.order, url: address_order_path, method: :put do |f|
-  %table.center
+  %table.throughout
     %tr
       %th
-        %h2= t(:billing_address)
+        = t(:billing_address)
       %th
-        %h2= t(:shipping_address)
+        = t(:shipping_address)
       %th
-        %h2= t(:order_summary)
+        = t(:order_summary)
     %tr
       %td.top
         = fields_for :billing_address, presenter.billing_address do |billing_address_f|

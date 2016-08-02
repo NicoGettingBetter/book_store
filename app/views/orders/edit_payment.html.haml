@@ -4,11 +4,10 @@
   %small= presenter.header_after :payment
 %h2.page-header= t(:credit_card)
 = form_for presenter.order, url: payment_order_path, method: :put do |ff|
-  %table.center
+  %table.throughout
     %tr
       %th
-      %th
-      %th
+      %th.left
         = t(:order_summary)
     %tr
       %td

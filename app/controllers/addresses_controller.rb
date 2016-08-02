@@ -13,7 +13,7 @@ class AddressesController < ApplicationController
 
   def update
     @form = AddressForm.from_params(address_params, id: params[:id])
-    
+
     set_presenter if @form.invalid?
     UpdateAddress.call(@form) do
       on(:ok) { redirect_to settings_path }

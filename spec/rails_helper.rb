@@ -7,15 +7,16 @@ require 'support/devise'
 require 'support/capybara'
 require 'support/database_cleaner'
 require 'shoulda/matchers'
+require 'support/test_helper'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/webkit/matchers'
 require 'database_cleaner'
 
 Capybara.javascript_driver = :webkit
-Capybara.run_server = true 
+Capybara.run_server = true
 Capybara.server_port = 7000
-Capybara.app_host = "http://localhost:#{Capybara.server_port}" 
+Capybara.app_host = "http://localhost:#{Capybara.server_port}"
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -45,4 +46,5 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
+  config.include(TestHelper)
 end

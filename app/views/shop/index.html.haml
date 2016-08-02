@@ -2,7 +2,8 @@
 %table.center
   %tr
     %td
-      %h4.left.top= presenter.header
+      #breadcrumbs
+        %h4.left.top= presenter.header
       %table.books
         - presenter.lines.each do |line|
           %tr
@@ -11,6 +12,5 @@
                 = link_to (render book), book_path(book.id)
     %td.categories
       = render categories_path
-%table.center
-  %td
-    = paginate presenter.books
+.center
+  = paginate presenter.books
