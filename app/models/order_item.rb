@@ -1,6 +1,6 @@
 class OrderItem < ApplicationRecord
-	belongs_to :order
-	belongs_to :book
+  belongs_to :order
+  belongs_to :book
 
   scope :if_exist, -> (order, book) { where(order: order, book: book) }
 

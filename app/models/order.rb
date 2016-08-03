@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   include AASM
 
-  aasm column: :state do 
+  aasm column: :state do
     state :in_progress, initial: true
     state :in_queue
     state :in_delivery
@@ -20,7 +20,7 @@ class Order < ApplicationRecord
       transitions from: :in_delivery, to: :delivered
     end
 
-    event :cancel do 
+    event :cancel do
       transitions from: :in_queue, to: :canceled
     end
   end
@@ -29,12 +29,12 @@ class Order < ApplicationRecord
     self[:aasm_state] || "unread"
   end
 
-	belongs_to :user
-	has_one :credit_card
+  belongs_to :user
+  has_one :credit_card
   has_one :coupon
-	belongs_to :billing_address, class_name: 'Address'
-	belongs_to :shipping_address, class_name: 'Address'
-	has_many :order_items, dependent: :destroy
+  belongs_to :billing_address, class_name: 'Address'
+  belongs_to :shipping_address, class_name: 'Address'
+  has_many :order_items, dependent: :destroy
   belongs_to :delivery
 
   scope :in_progress, -> (user) { where(state: :in_progress, user: user) }
@@ -42,9 +42,9 @@ class Order < ApplicationRecord
   scope :in_delivery, -> (user) { where(state: :in_delivery, user: user) }
   scope :delivered, -> (user) { where(state: :delivered, user: user) }
 
-  [:subtotal, 
-    :total, 
-    :sale, 
+  [:subtotal,
+    :total,
+    :sale,
     :delivery_price].each do |method|
       define_method(method) do
         OrderCalculator.call(self).public_send(method)
