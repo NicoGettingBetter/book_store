@@ -15,7 +15,7 @@
         %th= t(:price)
         %th= t(:qty)
         %th= t(:total)
-      - presenter.order.order_items.each do |order_item|
+      - order_items.each do |order_item|
         %tr
           = f.fields_for 'order_items[]', order_item do |ff|
             %td
@@ -36,7 +36,7 @@
               = price(order_item.quantity * order_item.price)
             %td
               = link_to 'x', order_item, method: :delete, id: order_item.id
-    %table.right.throghout
+    %table.right.throughout
       - if presenter.order.coupon
         %tr
           %td

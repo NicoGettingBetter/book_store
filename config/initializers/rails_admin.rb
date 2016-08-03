@@ -14,10 +14,17 @@ RailsAdmin.config do |config|
     'Review',
     'Category',
     'Delivery',
-    'Coupon']
+    'Coupon',
+    'OrderItem']
 
   ## == Cancan ==
   config.authorize_with :cancan
+
+  config.model 'OrderItem' do
+    edit do
+      field :quantity
+    end
+  end
 
   config.model 'Order' do
     list do
@@ -25,9 +32,16 @@ RailsAdmin.config do |config|
       field :total_price
       field :delivery
       field :coupon
+      field :order_items
+    end
+    show do
+      field :state
+      field :total_price
+      field :delivery
+      field :coupon
+      field :order_items
     end
     edit do
-      include_fields :state
       field :state, :enum do
         enum do
           init_state = bindings[:object].state

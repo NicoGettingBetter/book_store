@@ -10,7 +10,7 @@ class Ability
       if user.admin?
         can :access, :rails_admin
         can :dashboard
-        can :manage, [Order, Book, Review, Category, Author, Delivery, Coupon, User]
+        can :manage, [Order, Book, Review, Category, Author, Delivery, Coupon, User, OrderItem]
       end
     end
   end

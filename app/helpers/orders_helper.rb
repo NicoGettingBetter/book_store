@@ -18,4 +18,8 @@ module OrdersHelper
   def orders_delivered current_user
     Order.delivered(current_user)
   end
+
+  def order_items
+    presenter.order.order_items.map(&:decorate)
+  end
 end
