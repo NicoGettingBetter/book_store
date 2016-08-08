@@ -1,0 +1,16 @@
+%h2.page-header= t(:shop)
+%table.center
+  %tr
+    %td
+      #breadcrumbs
+        %h4.left.top= presenter.header
+      %table.books
+        - presenter.lines.each do |line|
+          %tr
+            - line.each do |book|
+              %td
+                = link_to (render book), book_path(book.id)
+    %td.categories
+      = render categories_path
+.center
+  = paginate presenter.books

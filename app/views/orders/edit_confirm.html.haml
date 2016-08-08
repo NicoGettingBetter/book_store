@@ -1,0 +1,64 @@
+.page-header
+  %small= presenter.header_before :confirm
+  = t(:confirm)
+  %small= presenter.header_after :confirm
+%h1.page-header= t(:confirm)
+%table.throughout
+  %tr.left
+    %td
+      %h3= t(:shipping_address)
+    %td
+      %h3= t(:billing_address)
+    %td
+      %h3= t(:shipments)
+    %td
+      %h3= t(:payment_information)
+  %tr
+    %td.top
+      = render 'address_info', object: presenter.order.billing_address.decorate
+    %td.top
+      = render 'address_info', object: presenter.order.shipping_address.decorate
+    %td.top
+      = render 'delivery_info', object: presenter.delivery
+    %td.top
+      = render 'credit_card_info', object: presenter.order.credit_card
+%table.underline.center
+  %tr
+    %th
+    %th= t(:book)
+    %th= t(:price)
+    %th= t(:qty)
+    %th= t(:total)
+  - presenter.order.order_items.map(&:decorate).each do |order_item|
+    %tr
+      %td
+        = image_tag order_item.book.image, class: 'small'
+      %td
+        %table.left
+          %tr
+            %td
+              %h2= order_item.book.title
+          %tr
+            %td
+              = order_item.book.short_description
+      %td
+        = price(order_item.price)
+      %td
+        = order_item.quantity
+      %td
+        = price(order_item.total)
+%table.throughout.right.page-header
+  %tr
+    %td
+      = "#{t(:subtotal)}: #{price(presenter.order.subtotal)}"
+  %tr
+    %td
+      = "#{t(:shipping)}: #{price(presenter.order.delivery.price)}"
+%table.throughout.right
+  %tr
+    %td
+      = "#{t(:order_total)}: #{price(presenter.order.total)}"
+%table.center
+  %tr
+    %td.left
+      = button_to t(:place_order), confirm_order_path, method: :put

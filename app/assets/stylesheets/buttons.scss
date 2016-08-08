@@ -1,0 +1,138 @@
+.middle-btn {
+  display: block;
+  width: 150px;
+  height: 50px;
+  padding: 10px;
+  color: #000;
+  text-decoration: none;
+  background: #3c3;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+.middle-btn:active {
+  background: #0a0;
+}
+
+a.middle-btn {
+  text-decoration: none;
+  color: #000;
+
+  &:visited {
+    color: #000;
+  }
+
+  &:hover {
+    color: #000;
+    background-color: #fff;
+  }
+}
+
+.middle-btn.red {
+  background: #c33;
+}
+
+.middle-btn.red:active {
+  background: #a00;
+}
+
+a.middle-btn.red {
+  text-decoration: none;
+  color: #000;
+
+  &:visited {
+    color: #000;
+  }
+
+  &:hover {
+    color: #000;
+    background-color: #fff;
+  }
+}
+
+select {
+  width: 300px;
+  padding: 10px;
+  background: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 5px;
+  height: 50px;
+}
+
+select.middle {
+  width: 150px;
+}
+
+input {
+  width: 300px;
+  padding: 10px;
+  background: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 5px;
+  height: 50px;
+}
+
+input.middle {
+  width: 150px;
+}
+
+input.short {
+  width: 100px;
+}
+
+input[type = "number"].quantity {
+  width: 100px;
+}
+
+input[type = "submit"] {
+  background: #3c3;
+}
+
+input[type = "submit"]:hover {
+  background: #fff;
+}
+
+input[type = "submit"]:active {
+  background: #0a0;
+}
+
+.btn:active {
+  background: white;
+}
+
+input[type='checkbox'] {
+  float: left;
+  width: 20px;
+}
+
+input[type='checkbox'] + label {
+  text-align: left;
+  display: block;
+  width: 300px;
+}
+
+input[type='radio'] {
+  float: left;
+  width: 20px;
+}
+
+input[type='radio'] + label {
+  text-align: left;
+  display: block;
+  width: 300px;
+}
+
+.hundred {
+  width: 100px;
+}
+
+textarea {
+  width: 100%;
+  max-width: 920px;
+  min-height: 100px;
+  max-height: 300px;
+}

@@ -1,0 +1,33 @@
+.page-header
+  %small
+    = presenter.header_before :delivery
+  = t(:delivery)
+  %small
+    = presenter.header_after :delivery
+%h1.page-header= t(:delivery)
+- if @form
+  - errors = @form.delivery.errors
+  #error_explanation.middle
+    %h2= "#{pluralize(errors.count, "error")} prohibited this delivery from being saved:"
+    %ul.left
+      - errors.full_messages.each do |msg|
+        %li= msg
+= form_for presenter.order, url: delivery_order_path, method: :put do |f|
+  %table.throughout
+    %tr
+      %th
+      %th
+      %th.left
+        = t(:order_summary)
+    %tr
+      %td
+        - presenter.deliveries.sort.each do |delivery|
+          .item
+            = f.radio_button :shipping, delivery.id, checked: (presenter.delivery == delivery)
+            = f.label :"shipping_#{delivery.id}", "#{delivery.company} #{delivery.delivery_method} + #{price(delivery.price)}"
+      %td
+      %td.top.right
+        = render partial: 'order_form', locals: { order: current_user.current_order }
+    %tr
+      %td
+        = f.submit t(:save_and_continue)

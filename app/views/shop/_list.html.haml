@@ -1,0 +1,5 @@
+%h3= t :categories
+%ul.list-group
+  - presenter.categories_links.each do |link|
+    %li.list-group-item
+      = link

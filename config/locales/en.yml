@@ -1,23 +1,75 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  shop_name: "The Bookstore"
+  home: 'Home'
+  shop: 'Shop'
+  cart: 'Cart'
+  sign_in: 'Sign in'
+  sign_up: 'Sign up'
+  sign_out: 'Sign out'
+  categories: 'Categories'
+  add_to_cart: 'Add to cart'
+  reviews: 'Reviews'
+  by: 'by'
+  welcome: "Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!"
+  save: 'Save'
+  update: 'Update'
+  billing_address: 'Billing address'
+  shipping_address: 'Shipping address'
+  email: 'Email'
+  password: 'Password'
+  book: 'Book'
+  price: 'Price'
+  qty: 'QTY'
+  total: 'Total'
+  subtotal: 'Subtotal'
+  empty_cart: 'Empty cart'
+  continue_shopping: 'Continue shopping'
+  checkout: 'Checkout'
+  coupon_code: 'Coupon code'
+  you_have_an_empty_cart: 'You have an empty cart'
+  first_name: 'First name'
+  last_name: 'Last name'
+  street: 'Street'
+  city: 'City'
+  country: 'Country'
+  country_id: 'Country'
+  zip: 'Zip'
+  zipcode: 'Zip'
+  phone: 'Phone'
+  save_and_continue: 'Save and continue'
+  use_billing_address: 'Use billing address'
+  card_number: 'Card number'
+  expiration_date: 'Expiration date'
+  expiration_month: 'Expiration month'
+  expiration_year: 'Expiration year'
+  cvv: 'CVV'
+  shipments: 'Shipments'
+  payment_information: 'Payment information'
+  place_order: 'Place order'
+  go_back_to_store: 'Go back to store'
+  please_select_country: 'Please select country'
+  sale: 'Sale'
+  please_select_month: 'Please select month'
+  please_select_year: 'Please select year'
+  company: 'Company'
+  delivery_method: 'Delivery method'
+  number: 'Number'
+  shipping: 'Shipping'
+  order_total: 'Order total'
+  in_progress: 'In progress'
+  go_to_cart: 'Go to cart'
+  waiting_for_processing: 'Waiting for processing'
+  empty: 'Empty'
+  back_to_orders: 'Back to orders'
+  send_me_reset_password_instructions: "Send Me Reset Password Instructions"
+  comment: 'Comment'
+  add_comment: 'Add comment'
+  new_comment: 'New comment'
+  comment_added: 'Your comment was added to list'
+  admin1: 'Admin'
+  comments: 'Comments'
+  credit_card: 'Credit card'
+  complete: 'Complete'
+  comment: 'Comment'
+  settings: 'Settings'
+  orders: 'Orders'

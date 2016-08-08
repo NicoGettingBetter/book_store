@@ -1,0 +1,34 @@
+%h2.page-header= t('.sign_up')
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = devise_error_messages!
+  %table.center
+    %tr
+      %td.right
+        = f.label :email
+      %td.left
+        = f.email_field :email, autofocus: true
+    %tr
+      %td.right
+        = f.label :first_name
+      %td.left
+        = f.text_field :first_name, autocomplete: "off"
+    %tr
+      %td.right
+        = f.label :last_name
+      %td.left
+        = f.text_field :last_name, autocomplete: "off"
+    %tr
+      %td.right
+        = f.label :password
+      %td.left
+        = f.password_field :password, autocomplete: "off"
+    %tr
+      %td.right
+        = f.label :password_confirmation
+      %td.left
+        = f.password_field :password_confirmation, autocomplete: "off"
+  %table.center
+    %tr
+      %td
+        = f.submit t(:sign_up)
+= render "devise/shared/links"

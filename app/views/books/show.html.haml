@@ -1,0 +1,42 @@
+.page-header
+  %h1
+    = presenter.book.title
+    %small
+      = presenter.by_authors
+      = presenter.authors_links
+%table.center
+  %tr
+    %td
+      = presenter.image presenter.book, class: :large
+    %td.top.left
+      %table
+        %tr
+          %td
+            %table
+              %tr
+                %td
+                  = presenter.book.decorated_price
+                %td
+                  = form_for presenter.order_item do |f|
+                    = f.hidden_field :book_id, value: presenter.book.id
+                    %table
+                      %tr
+                        %td
+                          = f.number_field :quantity, value: presenter.order_item.quantity, in: 1..presenter.book.instock, class: 'short'
+                        %td
+                          = f.submit t(:add_to_cart)
+        %tr
+          %td
+            .xs= presenter.description
+.page-header
+  %h1
+    = t(:comments)
+    %small
+      - if can? :update, Review
+        = link_to t(:add_comment), new_review_path(book_id: presenter.book.id)
+- presenter.approved_reviews.each do |review|
+  .page-header
+    = review.user.decorate.full_name
+    %small
+      = rating_for review, 'rating'
+      = review.text
