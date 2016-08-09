@@ -13,11 +13,9 @@ class Book < ApplicationRecord
             :price,
             presence: true
 
-  validates :price,
-            numericality: { grater_than: 0 }
+  validates :price, numericality: { grater_than: 0 }
 
-  validates :instock,
-            numericality: { grater_than_or_equal_to: 0 }
+  validates :instock, numericality: { grater_than_or_equal_to: 0 }
 
   scope :all_instock, -> { where(instock: 1..Float::INFINITY) }
   scope :most_popular_books, -> (count = 3) { all_instock

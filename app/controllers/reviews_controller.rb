@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   include Rectify::ControllerHelpers
 
   def new
-    @review = Review.create(book: book)
+    @review = Review.create(book: book, user: current_user)
   end
 
   def update
