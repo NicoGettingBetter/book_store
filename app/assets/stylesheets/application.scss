@@ -22,25 +22,3 @@
 @import 'buttons';
 @import 'layouts';
 @import 'home';
-
-html {
-  font-family: Courier New;
-  font-size: 12px;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-img.small {
-  max-width: 100px;
-  max-height: 100px;
-}
-
-img.middle {
-  max-width: 200px;
-  max-height: 200px;
-}
-
-img.large {
-  max-width: 350px;
-  max-height: 350px;
-}
