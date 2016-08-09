@@ -52,12 +52,12 @@ class UpdateOrder < Rectify::Command
     end
 
     def set_or_update_addresses
-      billing_address = @form.billing_address.id == '' ? create_address(:billing_address) : 
+      billing_address = @form.billing_address.id == '' ? create_address(:billing_address) :
         update_address(:billing_address)
       shipping_address = if @form.same_address
         create_address(:billing_address)
       else
-        @form.shipping_address.id == '' ? create_address(:shipping_address) : 
+        @form.shipping_address.id == '' ? create_address(:shipping_address) :
           update_address(:shipping_address)
       end
       update_order(billing_address: billing_address, shipping_address: shipping_address)

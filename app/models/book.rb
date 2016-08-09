@@ -5,13 +5,12 @@ class Book < ApplicationRecord
   has_many :reviews
   has_many :order_items
 
-  validates :title,
+  validates_presence_of :title,
             :short_description,
             :full_description,
             :image,
             :instock,
-            :price,
-            presence: true
+            :price
 
   validates :price, numericality: { grater_than: 0 }
 
