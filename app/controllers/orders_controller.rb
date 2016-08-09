@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   helper AddressHelper
 
   def index
+    present OrdersPresenter.new(current_user)
   end
 
   def show

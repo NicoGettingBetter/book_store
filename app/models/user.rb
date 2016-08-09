@@ -17,9 +17,9 @@ class User < ApplicationRecord
   scope :for_facebook, -> (auth) { where(provider: auth.provider, uid: auth.uid) }
 
   def current_order
-    Order.in_progress(self).first ||
-      Order.create( user: self, 
-        billing_address: default_billing_address, 
+    orders.in_progress.first ||
+      Order.create(user: self,
+        billing_address: default_billing_address,
         shipping_address: default_shipping_address)
   end
 

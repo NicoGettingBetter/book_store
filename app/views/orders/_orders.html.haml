@@ -1,8 +1,8 @@
-- unless public_send(:"orders_#{method}", current_user).empty?
+- unless presenter.public_send(:"orders_#{method}").empty?
   %h2.page-header= t(method)
   %table.throughout
     %tr
       %th= t(:number)
       %th= t(:completed_at)
       %th= t(:total)
-    = render partial: 'order_info', collection: public_send(:"orders_#{method}", current_user), as: :order
+    = render partial: 'order_info', collection: presenter.public_send(:"orders_#{method}"), as: :order
