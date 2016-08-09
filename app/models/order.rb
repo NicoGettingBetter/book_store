@@ -25,10 +25,6 @@ class Order < ApplicationRecord
     end
   end
 
-  def aasm_state
-    self[:aasm_state] || "unread"
-  end
-
   belongs_to :user
   has_one :credit_card
   has_one :coupon
