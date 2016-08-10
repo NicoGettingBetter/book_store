@@ -5,7 +5,7 @@ class SettingsPresenter < Rectify::Presenter
 
   [:first_name, :last_name].each do |name|
     define_method name do |type|
-      send(type).send(name) || current_user.send(name) 
+      send(type).send(name) || current_user.send(name)
     end
   end
 
@@ -21,5 +21,9 @@ class SettingsPresenter < Rectify::Presenter
 
   def country type
     send(type).country_id
+  end
+
+  def facebook?
+    current_user.provider == 'facebook'
   end
 end

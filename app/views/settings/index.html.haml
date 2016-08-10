@@ -6,19 +6,25 @@
     %th.left.page-header
       = t(:shipping_address)
   %tr
-    %td.top
+    %td.bottom
       #billing_address
         = render address_path, type: :default_billing_address
-    %td.top
+    %td.bottom
       #shipping_address
         = render address_path, type: :default_shipping_address
   %tr
     %th.left.page-header
       = t(:email)
-    %th.left.page-header
-      = t(:password)
+    - unless presenter.facebook?
+      %th.left.page-header
+        = t(:password)
   %tr
-    %td.top
+    %td.bottom
       = render user_edit_email_path
-    %td.top
-      = render user_edit_password_path
+    - unless presenter.facebook?
+      %td.bottom
+        = render user_edit_password_path
+  %tr
+    %td.bottom
+      = button_to t(:please_remove_my_account), registration_path(resource_name),
+       method: :delete, class: 'btn red'
