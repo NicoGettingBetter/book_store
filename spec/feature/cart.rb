@@ -11,7 +11,6 @@ feature 'edit cart' do
   given!(:order) { @user.current_order }
 
   background do
-    Capybara.current_driver = :webkit
     allow(Book).to receive(:all_instock) { [book] }
     allow(Coupon).to receive(:all_available) { [@coupon] }
     sign_in @user
@@ -64,7 +63,6 @@ feature 'checkout' do
   given(:book) { FactoryGirl.create(:book) }
 
   background do
-    Capybara.current_driver = :webkit
     allow(Book).to receive(:all_instock) { [book] }
     sign_in @user
     add_book book

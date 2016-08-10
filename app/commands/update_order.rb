@@ -100,6 +100,6 @@ class UpdateOrder < Rectify::Command
         order_item.book.sold_books order_item.quantity
       end
       order.place if order.may_place?
-      order.update(total_price: current_order.total, completed_date: Time.now)
+      order.update(total_price: order.total, completed_date: Time.now)
     end
 end

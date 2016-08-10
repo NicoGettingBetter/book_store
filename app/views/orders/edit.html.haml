@@ -15,7 +15,7 @@
         %th= t(:price)
         %th= t(:qty)
         %th= t(:total)
-      - order_items.each do |order_item|
+      - presenter.order_items.each do |order_item|
         %tr
           = f.fields_for 'order_items[]', order_item do |ff|
             %td
@@ -33,7 +33,7 @@
             %td
               = ff.number_field :quantity, value: order_item.quantity, in: 1..order_item.book.instock, class: 'hundred'
             %td
-              = price(order_item.quantity * order_item.price)
+              = price(order_item.total)
             %td
               = link_to 'x', order_item, method: :delete, id: order_item.id
     %table.right.throughout

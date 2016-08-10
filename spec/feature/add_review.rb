@@ -7,7 +7,6 @@ feature 'add_review' do
   given(:book) { FactoryGirl.create(:book) }
 
   background do
-    Capybara.current_driver = :webkit
     allow(Book).to receive(:all_instock) { [book] }
     sign_in @user
   end

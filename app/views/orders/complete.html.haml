@@ -27,7 +27,7 @@
     %th= t(:price)
     %th= t(:qty)
     %th= t(:total)
-  - order_items.each do |order_item|
+  - presenter.order_items.each do |order_item|
     %tr
       %td
         = image_tag order_item.book.image, class: 'small'
