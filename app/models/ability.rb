@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     can :read, [Book, Review, Category, Author]
     if user
+      can :read, :create, Rate
       can :read, [Order, User], user_id: user.id
       can :update, Review, user_id: user.id
       can :manage, [Order, OrderItem, User], user_id: user.id
