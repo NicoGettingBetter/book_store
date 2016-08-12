@@ -30,7 +30,8 @@
             .xs= presenter.description
 .page-header
   %h1
-    = t(:comments)
+    - if presenter.approved_reviews.any?
+      = t(:comments)
     %small
       - if can? :update, Review
         = link_to t(:add_comment), new_review_path(book_id: presenter.book.id)
