@@ -61,7 +61,7 @@ RailsAdmin.config do |config|
       end
       field :book do
         formatted_value do
-          bindings[:object].title
+          bindings[:object].book.title
         end
       end
       field :text
@@ -76,7 +76,7 @@ RailsAdmin.config do |config|
       end
       field :book do
         formatted_value do
-          bindings[:object].title
+          bindings[:object].book.title
         end
       end
     end

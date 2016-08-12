@@ -4,9 +4,9 @@ class Review < ApplicationRecord
 
   ratyrate_rateable 'rating'
 
-  scope :approved_reviews, -> (book) { where(approved: true, book: book) }
+  scope :approved_reviews, -> { where(approved: true) }
 
   def user
-    Rate.user(self)
+    Rate.user(id)
   end
 end
