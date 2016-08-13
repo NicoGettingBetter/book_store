@@ -3,12 +3,14 @@ require 'rails_helper'
 feature 'add book to cart' do
   before :all do
     @user = FactoryGirl.create(:user)
+    @book = FactoryGirl.create(:book)
   end
-  given(:book) { FactoryGirl.create(:book) }
+
+  after :all do
+    @book.delete
+  end
 
   background do
-    Capybara.current_driver = :webkit
-    allow(Book).to receive(:all_instock) { [book] }
     sign_in @user
   end
 
@@ -17,7 +19,7 @@ feature 'add book to cart' do
   end
 
   scenario 'from show' do
-    add_book book
+    add_book @book
   end
 
   scenario 'from carousel' do
@@ -29,11 +31,6 @@ feature 'call links on book' do
   before :all do
     @author = FactoryGirl.create(:author)
     @book = FactoryGirl.create(:book, authors: [@author])
-  end
-
-  background do
-    Capybara.current_driver = :webkit
-    allow(Book).to receive(:all_instock) { [@book] }
   end
 
   scenario 'open author from carousel' do

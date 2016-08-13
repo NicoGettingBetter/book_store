@@ -6,10 +6,6 @@ feature 'navigate by categories' do
     FactoryGirl.create(:book, categories: [@category])
   end
 
-  background do
-    Capybara.current_driver = :webkit
-  end
-
   scenario 'open category' do
     visit shop_path
     click_link @category.name

@@ -5,17 +5,19 @@ feature 'orders page' do
     @user = FactoryGirl.create(:user)
     @delivery = FactoryGirl.create(:delivery)
     @order_in_queue = FactoryGirl.create(:order_in_queue, user: @user, delivery: @delivery)
+    @book = FactoryGirl.create(:book)
   end
-  given(:book) { FactoryGirl.create(:book) }
+
+  after :all do
+    @book.delete
+  end
 
   background do
-    Capybara.current_driver = :webkit
-    allow(Book).to receive(:all_instock) { [book] }
     sign_in @user
   end
 
   scenario 'open cart' do
-    add_book book
+    add_book @book
     visit orders_path
     click_button(I18n.t(:go_to_cart))
     expect(page).to have_css('a', I18n.t(:checkout))
@@ -32,12 +34,10 @@ feature 'show order' do
     @user = FactoryGirl.create(:user)
     @delivery = FactoryGirl.create(:delivery)
     @order_in_queue = FactoryGirl.create(:order_in_queue, user: @user, delivery: @delivery)
+    @book = FactoryGirl.create(:book)
   end
-  given(:book) { FactoryGirl.create(:book) }
 
   background do
-    Capybara.current_driver = :webkit
-    allow(Book).to receive(:all_instock) { [book] }
     sign_in @user
   end
 

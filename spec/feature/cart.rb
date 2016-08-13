@@ -6,15 +6,17 @@ feature 'edit cart' do
   before :all do
     @coupon = Coupon.create(FactoryGirl.attributes_for(:coupon))
     @user = FactoryGirl.create(:user)
+    @book = FactoryGirl.create(:book)
   end
-  given(:book) { FactoryGirl.create(:book) }
   given!(:order) { @user.current_order }
 
+  after :all do
+    @book.delete
+  end
+
   background do
-    allow(Book).to receive(:all_instock) { [book] }
-    allow(Coupon).to receive(:all_available) { [@coupon] }
     sign_in @user
-    add_book book
+    add_book @book
   end
 
   after do
@@ -23,7 +25,7 @@ feature 'edit cart' do
 
   scenario 'update order item' do
     update_order_item(2)
-    expect(page).to have_content((book.price*2).to_s)
+    expect(page).to have_content((@book.price*2).to_s)
   end
 
   scenario 'add coupon' do
@@ -45,8 +47,8 @@ feature 'edit cart' do
   scenario 'delete order item' do
     click_link(I18n.t(:cart))
     click_link 'x'
-    expect(page).not_to have_content(book.title)
-    add_book book
+    expect(page).not_to have_content(@book.title)
+    add_book @book
   end
 
   scenario 'delete order' do
@@ -58,14 +60,16 @@ feature 'checkout' do
     @country = FactoryGirl.create(:country)
     @user = FactoryGirl.create(:user)
     @delivery = FactoryGirl.create(:delivery)
+    @book = FactoryGirl.create(:book)
   end
 
-  given(:book) { FactoryGirl.create(:book) }
+  after :all do
+    @book.delete
+  end
 
   background do
-    allow(Book).to receive(:all_instock) { [book] }
     sign_in @user
-    add_book book
+    add_book @book
     go_to_checkout
   end
 
@@ -135,7 +139,7 @@ feature 'checkout' do
     scenario 'place order' do
       click_button I18n.t(:place_order)
       expect(page).to have_selector("input[type=submit][value='#{I18n.t(:go_back_to_store)}']")
-      add_book book
+      add_book @book
     end
   end
 end
@@ -144,7 +148,7 @@ private
 
   def update_order_item count
     click_link(I18n.t(:cart))
-    fill_in "order_order_items_#{book.order_items.first.id}_quantity", with: count
+    fill_in "order_order_items_#{@book.order_items.first.id}_quantity", with: count
     click_button(I18n.t(:update))
   end
 

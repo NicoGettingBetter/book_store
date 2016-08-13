@@ -1,6 +1,5 @@
 class ShopController < ApplicationController
   include Rectify::ControllerHelpers
-  helper BooksHelper
 
   def index
     present ShopPresenter.new(category: category,

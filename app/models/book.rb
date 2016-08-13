@@ -17,7 +17,7 @@ class Book < ApplicationRecord
   validates :instock, numericality: { grater_than_or_equal_to: 0 }
 
   scope :all_instock, -> { where(instock: 1..Float::INFINITY) }
-  scope :most_popular_books, -> (count = 3) { where(id: all_instock
+  scope :most_popular_books, -> (count = 3) { where(id: all_instock.any? && all_instock
     .group_by{ |book| book.order_items.map(&:quantity).sum }
     .max_by(count){ |key, value| key }.transpose[1].flatten.first(count).map(&:id)) }
 

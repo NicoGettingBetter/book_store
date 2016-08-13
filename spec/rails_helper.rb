@@ -14,7 +14,7 @@ require 'capybara/webkit/matchers'
 require 'database_cleaner'
 
 Capybara.javascript_driver = :webkit
-Capybara.current_driver = :webkit
+Capybara.default_driver = :webkit
 Capybara.run_server = true
 Capybara.server_port = 7000
 Capybara.app_host = "http://localhost:#{Capybara.server_port}"

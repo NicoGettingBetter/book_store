@@ -3,7 +3,7 @@ class ShopPresenter < BooksPresenter
   attribute :category, Category
 
   def books count = 12
-    books = category ? all_instock_books(category.books) : Book.all_instock
+    books = category ? category.books.all_instock : Book.all_instock
     Kaminari.paginate_array(books.decorate).page(params[:page]).per(count)
   end
 

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Book, :type => :model do
-  [:title, 
-    :short_description, 
+  [:title,
+    :short_description,
     :full_description,
     :image,
     :instock,
@@ -10,8 +10,8 @@ RSpec.describe Book, :type => :model do
       it { should have_db_column(field) }
     end
 
-  [:title, 
-    :short_description, 
+  [:title,
+    :short_description,
     :full_description,
     :image,
     :instock,
@@ -34,7 +34,7 @@ RSpec.describe Book, :type => :model do
       it { should validate_numericality_of(field) }
     end
 
-  context 'all instock' do 
+  context 'all instock' do
     before do
       @books = FactoryGirl.create_list(:book, 3)
       @out_of_stock_books = FactoryGirl.create_list(:out_of_stock_book, 3)
@@ -67,7 +67,7 @@ RSpec.describe Book, :type => :model do
     end
   end
 
-  it 'have valid factory' do 
+  it 'have valid factory' do
     expect(FactoryGirl.build(:book)).to be_valid
   end
 end
