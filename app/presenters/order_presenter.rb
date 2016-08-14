@@ -41,6 +41,8 @@ class OrderPresenter < Rectify::Presenter
   end
 
   def header_after state
-    safe_join(@states.split(state).last.map { |st| t(st) }, ' '.html_safe)
+    safe_join(@states.split(state).last.map do |st|
+      CheckoutLink.call(order).linkable?(st) ? (link_to t(st), @routes[st]) : t(st)
+    end, ' '.html_safe)
   end
 end
