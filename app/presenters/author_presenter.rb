@@ -1,4 +1,4 @@
-class AuthorPresenter < BasePresenter
+class AuthorPresenter < Rectify::Presenter
   attribute :author, Author
 
   def lines count = 5

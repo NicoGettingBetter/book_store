@@ -1,4 +1,4 @@
-class BookPresenter < BasePresenter
+class BookPresenter < Rectify::Presenter
   attribute :book, Book
   attribute :order_item, OrderItem
 
