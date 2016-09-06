@@ -12,6 +12,14 @@ class OrderForm < Rectify::Form
     inclusion: { in: Coupon.all_available.map(&:code) << '' << nil,
     message: 'not available' }
 
+  def from_addresses options
+    @billing_address = AddressForm.from_params(options[:billing_address], type: :billing_address)
+    @same_address = options[:check]
+    unless @same_address
+      @shipping_address = AddressForm.from_params(options[:shipping_address], type: :shipping_address)
+    end
+  end
+
   def invalid?
     !valid?
   end

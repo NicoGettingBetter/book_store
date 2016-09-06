@@ -30,13 +30,8 @@ class OrdersController < ApplicationController
   end
 
   def order_address
-    @form = OrderForm.new(billing_address: AddressForm.from_params(address_params(:billing_address),
-      type: :billing_address))
-    @form.same_address = params.require(:use_billing_address).permit(:check)[:check] == '1'
-    unless @form.same_address
-      @form.shipping_address = AddressForm.from_params(address_params(:shipping_address),
-        type: :shipping_address)
-    end
+    @form = OrderForm.new()
+    @form.from_addresses(addresses_params)
     add_address_to_presenter if @form.invalid?
     UpdateOrder.call(@form, :addresses) do
       on(:ok) { redirect_to edit_delivery_order_path }
@@ -113,6 +108,18 @@ class OrdersController < ApplicationController
 
     def address_params type
       params.require(type).permit(:id, :first_name, :last_name, :street, :zipcode, :city, :phone, :country_id)
+    end
+
+    def check_params
+      params.require(:use_billing_address).permit(:check)[:check] == '1'
+    end
+
+    def addresses_params
+      {
+        billing_address: address_params(:billing_address),
+        shipping_address: address_params(:shipping_address),
+        check: check_params
+      }
     end
 
     def add_address_to_presenter
