@@ -1,0 +1,5 @@
+.page-header
+  = review.user.decorate.full_name
+  %small
+    = rating_for review, 'rating'
+    = review.text

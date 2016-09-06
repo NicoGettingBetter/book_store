@@ -35,9 +35,4 @@
     %small
       - if can? :update, Review
         = link_to t(:add_comment), new_review_path(book_id: presenter.book.id)
-- presenter.approved_reviews.each do |review|
-  .page-header
-    = review.user.decorate.full_name
-    %small
-      = rating_for review, 'rating'
-      = review.text
+= render partial: 'review', collection: presenter.approved_reviews, as: :review
