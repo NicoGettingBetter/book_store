@@ -2,8 +2,8 @@
   %h1
     = presenter.book.title
     %small
-      = presenter.by_authors
-      = presenter.authors_links
+      = by_authors presenter.book
+      = authors_links presenter.book
 %table.center
   %tr
     %td
@@ -27,7 +27,7 @@
                           = f.submit t(:add_to_cart)
         %tr
           %td
-            .xs= presenter.description
+            .xs= description presenter.book, 2000
 .page-header
   %h1
     - if presenter.approved_reviews.any?
