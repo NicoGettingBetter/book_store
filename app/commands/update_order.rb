@@ -82,7 +82,11 @@ class UpdateOrder < Rectify::Command
     end
 
     def set_or_update_delivery
-      update_order(delivery: Delivery.find(@form.delivery.id))
+      update_order(delivery: delivery)
+    end
+
+    def delivery
+      Delivery.find_by(id: @form.delivery.id)
     end
 
     def set_or_update_credit_card
