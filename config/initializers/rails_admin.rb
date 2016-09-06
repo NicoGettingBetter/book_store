@@ -45,7 +45,11 @@ RailsAdmin.config do |config|
       field :state, :enum do
         enum do
           init_state = bindings[:object].state
-          bindings[:object].aasm.states(permitted: true).map(&:name).unshift(init_state)
+          if init_state == 'in_progress'
+            [init_state]
+          else
+            bindings[:object].aasm.states(permitted: true).map(&:name).unshift(init_state)
+          end
         end
       end
     end
