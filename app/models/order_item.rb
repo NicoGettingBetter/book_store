@@ -4,6 +4,8 @@ class OrderItem < ApplicationRecord
 
   scope :if_exist, -> (order, book) { where(order: order, book: book) }
 
+  delegate :instock, to: :book, prefix: true
+
   def self.exist_or_new order, book
     if_exist(order, book).first || OrderItem.new(quantity: 1)
   end

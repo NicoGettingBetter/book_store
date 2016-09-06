@@ -31,7 +31,7 @@
             %td
               = price(order_item.price)
             %td
-              = ff.number_field :quantity, value: order_item.quantity, in: 1..order_item.book.instock, class: 'hundred'
+              = ff.number_field :quantity, value: order_item.quantity, in: 1..order_item.book_instock, class: 'hundred'
             %td
               = price(order_item.total)
             %td
