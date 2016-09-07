@@ -21,10 +21,7 @@
         = t(:order_summary)
     %tr
       %td
-        - presenter.deliveries.sort.each do |delivery|
-          .item
-            = f.radio_button :shipping, delivery.id, checked: (presenter.delivery == delivery)
-            = f.label :"shipping_#{delivery.id}", "#{delivery.company} #{delivery.delivery_method} + #{price(delivery.price)}"
+        = render partial: 'delivery_form', collection: presenter.deliveries.sort, as: :delivery, locals: { f: f }
       %td
       %td.top.right
         = render partial: 'order_form', locals: { order: current_user.current_order }

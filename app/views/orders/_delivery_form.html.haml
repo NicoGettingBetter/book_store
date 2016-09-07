@@ -1,0 +1,3 @@
+.item
+  = f.radio_button :shipping, delivery.id, checked: (presenter.delivery == delivery)
+  = f.label :"shipping_#{delivery.id}", "#{delivery.company} #{delivery.delivery_method} + #{price(delivery.price)}"
