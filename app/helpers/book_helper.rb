@@ -7,7 +7,11 @@ module BookHelper
     t(:by) if book.authors.any?
   end
 
-  def description book, trunc = 2000
+  def short_description book, trunc = 2000
     book.short_description.truncate(trunc)
+  end
+
+  def full_description book, trunc = 2000
+    book.full_description.truncate(trunc)
   end
 end
