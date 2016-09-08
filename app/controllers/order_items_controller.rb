@@ -1,23 +1,24 @@
 class OrderItemsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :set_order_item, only: [:destroy]
 
   def create
     @form = OrderItemForm.from_params(order_item_params, order_id: current_order.id)
     @form.set_price
-    
-    SetOrUpdateOrderItem.call(@form) do 
+
+    SetOrUpdateOrderItem.call(@form) do
       on(:ok) { redirect_to :back }
     end
   end
 
   def update
-    @form = OrderItemForm.from_params(order_item_params, 
+    @form = OrderItemForm.from_params(order_item_params,
                                       order_id: current_order.id,
                                       id: params[:id])
     @form.set_price
-    
-    UpdateOrderItem.call(@form) do 
+
+    UpdateOrderItem.call(@form) do
       on(:ok) { redirect_to :back }
     end
   end
