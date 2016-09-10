@@ -12,7 +12,7 @@ class AddressesController < ApplicationController
   end
 
   def update
-    @form = AddressForm.from_params(address_params, id: params[:id])
+    @form = AddressForm.from_params(address_params, id: params[:format])
 
     set_presenter if @form.invalid?
     UpdateAddress.call(@form) do

@@ -7,6 +7,7 @@ class Ability
       can :read, :create, Rate
       can :read, [Order, User], user_id: user.id
       can :update, Review, user_id: user.id
+      can :manage, User, id: user.id
       can :manage, Order, user_id: user.id
       can :manage, OrderItem, order_id: user.current_order.id
       if user.admin?
