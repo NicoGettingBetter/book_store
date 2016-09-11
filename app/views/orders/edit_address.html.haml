@@ -4,7 +4,7 @@
     = presenter.header_after :address
 %h1.page-header= t(:address)
 = form_for presenter.order, url: address_order_path, method: :put do |f|
-  %table.throughout
+  %table.throughout.fixed
     %tr
       %th
         = t(:billing_address)
@@ -13,17 +13,17 @@
       %th
         = t(:order_summary)
     %tr
-      %td.top
+      %td.bottom.empty-line
         = fields_for :billing_address, presenter.billing_address do |billing_address_f|
           = render partial: 'address_form', locals: { f: billing_address_f, type: :billing_address }
       %td.top
-        .shipping_address
-          = fields_for :shipping_address, presenter.shipping_address do |shipping_address_f|
-            = render partial: 'address_form', locals: { f: shipping_address_f, type: :shipping_address }
         = fields_for :use_billing_address do |use_f|
-          .item
+          .checkbox.item
             = use_f.check_box :check, checked: presenter.same_address
             = use_f.label t(:use_billing_address)
+        #shipping_address
+          = fields_for :shipping_address, presenter.shipping_address do |shipping_address_f|
+            = render partial: 'address_form', locals: { f: shipping_address_f, type: :shipping_address }
       %td.top
         = render partial: 'order_form', locals: { order: current_order }
     %tr
