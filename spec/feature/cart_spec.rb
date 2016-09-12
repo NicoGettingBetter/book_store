@@ -65,6 +65,7 @@ feature 'checkout' do
 
   after :all do
     @book.delete
+    @country.delete
   end
 
   background do

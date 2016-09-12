@@ -33,6 +33,11 @@ feature 'call links on book' do
     @book = FactoryGirl.create(:book, authors: [@author])
   end
 
+  after :all do
+    @book.authors.delete(@author)
+    @book.delete
+  end
+
   scenario 'open author from carousel' do
     visit root_path
     click_link(@book.authors.first.first_name)
@@ -53,15 +58,6 @@ feature 'call links on book' do
 end
 
 private
-
-  def add_book book
-    visit shop_path
-    expect(page).to have_content(book.title)
-    click_link(book.title)
-    click_button(I18n.t(:add_to_cart))
-    expect(page).to have_content('Cart:(1)')
-  end
-
   def add_book_from_carousel
     visit root_path
     click_button(I18n.t(:add_to_cart))

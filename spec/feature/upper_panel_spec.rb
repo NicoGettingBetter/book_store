@@ -41,6 +41,10 @@ feature 'links as registeger user' do
     @book = FactoryGirl.create(:book)
   end
 
+  after :all do
+    @book.delete
+  end
+
   background do
     sign_in @user
   end

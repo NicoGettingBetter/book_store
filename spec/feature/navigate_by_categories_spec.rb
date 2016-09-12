@@ -3,7 +3,12 @@ require 'rails_helper'
 feature 'navigate by categories' do
   before :all do
     @category = FactoryGirl.create(:category)
-    FactoryGirl.create(:book, categories: [@category])
+    @book = FactoryGirl.create(:book, categories: [@category])
+  end
+
+  after :all do
+    @book.categories.delete(@category)
+    @book.delete
   end
 
   scenario 'open category' do
