@@ -8,25 +8,14 @@ class OrderItemsController < ApplicationController
     @form.set_price
 
     SetOrUpdateOrderItem.call(@form) do
-      on(:ok) { redirect_to :back }
-    end
-  end
-
-  def update
-    @form = OrderItemForm.from_params(order_item_params,
-                                      order_id: current_order.id,
-                                      id: params[:id])
-    @form.set_price
-
-    UpdateOrderItem.call(@form) do
-      on(:ok) { redirect_to :back }
+      on(:ok) { redirect_back(fallback_location: root_path) }
     end
   end
 
   def destroy
-    @order_item.destroy
+    @order_item.delete
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_back(fallback_location: root_path) }
     end
   end
 

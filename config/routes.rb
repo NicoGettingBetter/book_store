@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     passwords: "users/passwords",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-  
+
   get 'application/upper_panel', to: 'application#upper_panel', as: 'upper_panel'
 
   get 'home/book_for_carousel', to: 'home#book_for_carousel', as: 'book_for_carousel'
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :addresses, only: [:create, :update]
   resources :authors, only: :show
   resources :books, only: :show
-  resources :order_items, only: [:create, :update, :destroy]
+  resources :order_items, only: [:create, :destroy]
   resources :orders, only: [:index, :edit, :update, :show, :destroy] do
     member do
       get 'addresses', action: 'edit_address', as: 'edit_address'

@@ -8,7 +8,7 @@ RSpec.describe AddressesController, :type => :controller do
       zipcode: 1,
       city: FFaker::Address.city,
       phone: FFaker::PhoneNumberAU.international_phone_number,
-      country_id: 1, 
+      country_id: 1,
       type: :default_billing_address }
   }
 
@@ -19,14 +19,14 @@ RSpec.describe AddressesController, :type => :controller do
       zipcode: '',
       city: '',
       phone: '111',
-      country_id: '', 
+      country_id: '',
       type: :default_billing_address }
   }
 
   let(:user) { FactoryGirl.create(:user) }
 
-  before do     
-    allow(controller).to receive(:current_user) { user } 
+  before do
+    allow(controller).to receive(:current_user) { user }
   end
 
   describe "POST create" do
@@ -63,27 +63,27 @@ RSpec.describe AddressesController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) { 
+      let(:new_attributes) {
         { first_name: 'New name',
           last_name: FFaker::Name.last_name,
           street: FFaker::Address.street_address,
           zipcode: 1,
           city: FFaker::Address.city,
           phone: FFaker::PhoneNumberAU.international_phone_number,
-          country_id: 1, 
+          country_id: 1,
           type: :default_billing_address }
       }
 
       it "updates the requested address", :focus do
         address = Address.create! valid_attributes.without(:type)
-        put :update, {id: address.id, address: new_attributes }
+        put :update, {id: 'address', format: address.id, address: new_attributes }
         address.reload
         expect(Address.find(address.id).first_name).to eq 'New name'
       end
 
       it "redirects to the settings" do
         address = Address.create! valid_attributes.without(:type)
-        put :update, {id: address.id, address: valid_attributes}
+        put :update, {id: 'address', format: address.id, address: valid_attributes}
         expect(response).to redirect_to(settings_path)
       end
     end

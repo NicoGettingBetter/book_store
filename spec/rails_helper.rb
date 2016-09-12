@@ -12,6 +12,7 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/webkit/matchers'
 require 'database_cleaner'
+require "cancan/matchers"
 
 Capybara.javascript_driver = :webkit
 Capybara.default_driver = :webkit
