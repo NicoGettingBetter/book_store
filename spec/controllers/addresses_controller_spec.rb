@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AddressesController, :type => :controller do
+RSpec.describe AddressesController, type: :controller do
   let(:valid_attributes) {
     { first_name: FFaker::Name.first_name,
       last_name: FFaker::Name.last_name,

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ReviewsController, :type => :controller do
+RSpec.describe ReviewsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:book) { FactoryGirl.create(:book) }
   let(:valid_attributes) {

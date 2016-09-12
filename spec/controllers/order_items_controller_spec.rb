@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OrderItemsController, :type => :controller do
+RSpec.describe OrderItemsController, type: :controller do
   include Devise::Test::ControllerHelpers
 
   let(:book) { FactoryGirl.create(:book) }

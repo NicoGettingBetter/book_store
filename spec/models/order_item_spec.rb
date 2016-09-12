@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OrderItem, :type => :model do
+RSpec.describe OrderItem, type: :model do
   [:price,
     :quantity,
     :order_id,

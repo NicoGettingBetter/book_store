@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Delivery, :type => :model do
+RSpec.describe Delivery, type: :model do
   [:company,
     :delivery_method,
     :price].each do |field|

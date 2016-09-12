@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AuthorsController, :type => :controller do
+RSpec.describe AuthorsController, type: :controller do
   describe 'GET show' do
     it 'render show template' do
       author = FactoryGirl.create(:author)

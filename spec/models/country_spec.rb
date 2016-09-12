@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Country, :type => :model do
+RSpec.describe Country, type: :model do
   it { should have_db_column(:name) }
   it { should validate_presence_of(:name) }
   it { should have_many(:addresses) }
