@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Coupon, :type => :model do
+RSpec.describe Coupon, type: :model do
   [:code,
     :sale,
     :order_id].each do |field|

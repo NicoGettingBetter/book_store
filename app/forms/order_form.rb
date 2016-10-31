@@ -8,32 +8,39 @@ class OrderForm < Rectify::Form
   attribute :delivery, DeliveryForm
 
   validates_length_of :coupon, is: 6, allow_blank: true
-  validates :coupon, 
-    inclusion: { in: Coupon.all_available.map(&:code) << '' << nil, 
+  validates :coupon,
+    inclusion: { in: Coupon.all_available.map(&:code) << '' << nil,
     message: 'not available' }
+
+  def from_addresses options
+    @billing_address = AddressForm.from_params(options[:billing_address], type: :billing_address)
+    @same_address = options[:check]
+    unless @same_address
+      @shipping_address = AddressForm.from_params(options[:shipping_address], type: :shipping_address)
+    end
+  end
 
   def invalid?
     !valid?
   end
 
   def valid?
-    output = super
     if shipping_address
-      shipping_address.valid?
-      billing_address.valid? &&
-        shipping_address.valid? &&
-        errors.empty? && output
+      addresses_valid?
     elsif billing_address
-      billing_address.valid? &&
-        errors.empty? && output
+      billing_address.valid?
     elsif credit_card
-      credit_card.valid? &&
-        errors.empty? && output
+      credit_card.valid?
     elsif delivery
-      delivery.valid? &&
-        errors.empty? && output
+      delivery.valid?
     else
-      errors.empty? && output
+      super
     end
   end
+
+  private
+
+    def addresses_valid?
+      billing_address.valid? & shipping_address.valid?
+    end
 end

@@ -38,17 +38,19 @@ feature 'links as registeger user' do
   before :all do
     @user = FactoryGirl.create(:user)
     @order = @user.current_order
+    @book = FactoryGirl.create(:book)
   end
-  given(:book) { FactoryGirl.create(:book) }
+
+  after :all do
+    @book.delete
+  end
 
   background do
-    Capybara.current_driver = :webkit
-    allow(Book).to receive(:all_instock) { [book] }
     sign_in @user
   end
 
   scenario 'Cart' do
-    add_book book
+    add_book @book
     visit root_path
     click_link(I18n.t(:cart))
     expect(current_path).to eq(edit_order_path(@order.id))

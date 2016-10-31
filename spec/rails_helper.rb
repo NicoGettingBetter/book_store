@@ -12,8 +12,10 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/webkit/matchers'
 require 'database_cleaner'
+require "cancan/matchers"
 
 Capybara.javascript_driver = :webkit
+Capybara.default_driver = :webkit
 Capybara.run_server = true
 Capybara.server_port = 7000
 Capybara.app_host = "http://localhost:#{Capybara.server_port}"

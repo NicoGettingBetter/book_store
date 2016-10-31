@@ -1,0 +1,4 @@
+%tr
+  - line.each do |book|
+    %td
+      = link_to (render book), book_path(book.id)

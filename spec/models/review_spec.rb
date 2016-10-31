@@ -7,13 +7,12 @@ RSpec.describe Review, type: :model do
     let!(:book) { FactoryGirl.create(:book) }
 
     before do
-      @reviews = FactoryGirl.create_list(:review, 5)
+      @reviews = FactoryGirl.create_list(:review, 5, book: book)
       @reviews_without_book = FactoryGirl.create_list(:review, 5)
-      @reviews.each { |review| review.update(book: book) }
     end
 
     it 'returns all approved reviews' do
-      expect(Review.approved_reviews(book)).to match_array(@reviews)
+      expect(book.reviews.approved_reviews).to match_array(@reviews)
     end
   end
 end

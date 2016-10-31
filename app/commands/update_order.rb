@@ -52,12 +52,12 @@ class UpdateOrder < Rectify::Command
     end
 
     def set_or_update_addresses
-      billing_address = @form.billing_address.id == '' ? create_address(:billing_address) : 
+      billing_address = @form.billing_address.id == '' ? create_address(:billing_address) :
         update_address(:billing_address)
       shipping_address = if @form.same_address
         create_address(:billing_address)
       else
-        @form.shipping_address.id == '' ? create_address(:shipping_address) : 
+        @form.shipping_address.id == '' ? create_address(:shipping_address) :
           update_address(:shipping_address)
       end
       update_order(billing_address: billing_address, shipping_address: shipping_address)
@@ -82,7 +82,11 @@ class UpdateOrder < Rectify::Command
     end
 
     def set_or_update_delivery
-      update_order(delivery: Delivery.find(@form.delivery.id))
+      update_order(delivery: delivery)
+    end
+
+    def delivery
+      Delivery.find_by(id: @form.delivery.id)
     end
 
     def set_or_update_credit_card
@@ -100,6 +104,6 @@ class UpdateOrder < Rectify::Command
         order_item.book.sold_books order_item.quantity
       end
       order.place if order.may_place?
-      order.update(total_price: current_order.total, completed_date: Time.now)
+      order.update(total_price: order.total, completed_date: Time.now)
     end
 end

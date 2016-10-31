@@ -15,10 +15,8 @@
     %tr
       %td.left
         = f.label "#{t(:expiration_date)}:"
-    %tr
       %td.right
         = f.select :expiration_month, months, { prompt: t(:please_select_month)}, { class: 'middle' }
-      %td.left
         = f.select :expiration_year, (2017..2030).to_a, { prompt: t(:please_select_year)}, { class: 'middle' }
     %tr
       %td.right

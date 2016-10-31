@@ -21,4 +21,8 @@ module ApplicationHelper
   def cart
     " #{t(:cart)}:(#{order_items_count})#{cart_price}"
   end
+  
+  def image book, hash
+    image_tag(book.image, hash)
+  end
 end

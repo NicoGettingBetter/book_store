@@ -1,4 +1,4 @@
-.page-header
+.page-header.h3.center
   %small= presenter.header_before :confirm
   = t(:confirm)
   %small= presenter.header_after :confirm
@@ -29,24 +29,7 @@
     %th= t(:price)
     %th= t(:qty)
     %th= t(:total)
-  - presenter.order.order_items.map(&:decorate).each do |order_item|
-    %tr
-      %td
-        = image_tag order_item.book.image, class: 'small'
-      %td
-        %table.left
-          %tr
-            %td
-              %h2= order_item.book.title
-          %tr
-            %td
-              = order_item.book.short_description
-      %td
-        = price(order_item.price)
-      %td
-        = order_item.quantity
-      %td
-        = price(order_item.total)
+  = render partial: 'order_item_info', collection: presenter.order.order_items, as: :order_item
 %table.throughout.right.page-header
   %tr
     %td

@@ -2,11 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, [Book, Review, Category, Author]
+    can :read, [Book, Review, Category, Author, Rate]
     if user
-      can :read, [Order, User], user_id: user.id
+      can :create, Rate
       can :update, Review, user_id: user.id
-      can :manage, [Order, OrderItem, User], user_id: user.id
+      can :manage, User, id: user.id
+      can :manage, Order, user_id: user.id
+      can :manage, OrderItem, order_id: user.current_order.id
       if user.admin?
         can :access, :rails_admin
         can :dashboard

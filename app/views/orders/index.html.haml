@@ -1,5 +1,5 @@
 %h1.page-header= t(:orders)
-- unless order_in_progress_items(current_user).empty?
+- unless presenter.order_in_progress_items.empty?
   %h2.page-header= t(:in_progress)
   %table.throughout
     %tr
@@ -8,24 +8,7 @@
       %th= t(:price)
       %th= t(:qty)
       %th= t(:total)
-    - order_in_progress_items(current_user).each do |order_item|
-      %tr
-        %td
-          = image_tag order_item.book.image, class: 'small'
-        %td
-          %table.left
-            %tr
-              %td
-                %h2= order_item.book.title
-            %tr
-              %td
-                = order_item.book.short_description
-        %td
-          = price(order_item.price)
-        %td
-          = order_item.quantity
-        %td
-          = price(order_item.total)
+    = render partial: 'order_item_info', collection: presenter.order_in_progress_items, as: :order_item
   %table.page-header.throughout.right
     %tr
       %td
@@ -34,4 +17,4 @@
     %tr
       %td.left
         = button_to t(:go_to_cart), edit_order_path(current_order.id), method: :get
-= render partial: 'orders', collection: methods, as: :method
+= render partial: 'orders', collection: presenter.methods, as: :method

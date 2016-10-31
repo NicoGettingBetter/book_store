@@ -15,14 +15,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+      if data = facebook_data && raw_info
         user.email = data["email"] if user.email.blank?
-        debugger
       end
     end
   end
 
   protected
+
+  def facebook_data
+    session["devise.facebook_data"]
+  end
+
+  def raw_info
+    session["devise.facebook_data"]["extra"]["raw_info"]
+  end
 
   def after_update_path_for(resource)
     settings_path

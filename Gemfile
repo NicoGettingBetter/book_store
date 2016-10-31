@@ -1,19 +1,20 @@
 source 'https://rubygems.org'
 
 ruby '2.3.1'
+gem 'bundler', '~>1.13.6'
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'uglifier', '>= 1.3.0'
-gem 'rake', '~>11.1'
+gem 'rake'
 gem "haml-rails", "~> 0.9"
 gem 'devise', '~> 4.0'
 gem 'i18n', '~> 0.7'
 gem "mini_magick"
 gem 'owlcarousel-rails'
-gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
@@ -32,6 +33,7 @@ gem 'cancancan', '~> 1.12.0'
 gem 'carrierwave'
 gem 'rack-pjax', github: 'afcapel/rack-pjax'
 gem 'aasm'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'rspec-rails'

@@ -6,10 +6,10 @@
     = csrf_meta_tags
     = yield(:carousel)
   %body
-    - flash.each do |key, value| 
+    = render upper_panel_path
+    - flash.each do |key, value|
       .alert{ class: "alert-#{key}"}
         = value
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = render upper_panel_path
     = yield

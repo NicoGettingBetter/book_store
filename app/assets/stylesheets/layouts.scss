@@ -1,9 +1,35 @@
+html {
+  font-family: Courier New;
+  font-size: 12px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+img.small {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+img.middle {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+img.large {
+  max-width: 350px;
+  max-height: 350px;
+}
+
 .center {
   text-align: center;
 }
 
 .top {
   vertical-align: top;
+}
+
+.bottom {
+  vertical-align: bottom;
 }
 
 .left {
@@ -20,4 +46,12 @@
 
 .item {
   line-height: 60px;
+}
+
+.empty-line {
+  padding-top: 80px;
+}
+
+.fixed {
+  table-layout: fixed;
 }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Address, :type => :model do
+RSpec.describe Address, type: :model do
   [:first_name,
     :last_name,
     :street,

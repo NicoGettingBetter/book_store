@@ -25,10 +25,6 @@ class Order < ApplicationRecord
     end
   end
 
-  def aasm_state
-    self[:aasm_state] || "unread"
-  end
-
   belongs_to :user
   has_one :credit_card
   has_one :coupon
@@ -36,11 +32,6 @@ class Order < ApplicationRecord
   belongs_to :shipping_address, class_name: 'Address'
   has_many :order_items, dependent: :destroy
   belongs_to :delivery
-
-  scope :in_progress, -> (user) { where(state: :in_progress, user: user) }
-  scope :in_queue, -> (user) { where(state: :in_queue, user: user) }
-  scope :in_delivery, -> (user) { where(state: :in_delivery, user: user) }
-  scope :delivered, -> (user) { where(state: :delivered, user: user) }
 
   [:subtotal,
     :total,

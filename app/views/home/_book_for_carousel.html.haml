@@ -3,17 +3,17 @@
     %h1
       = link_to book.title, book
       %small
-        = presenter.by_authors book
-        = presenter.authors_links book
+        = by_authors book
+        = authors_links book
   %table.center
     %tr
       %td
-        = presenter.image book, class: 'large'
+        = image book, class: 'large'
       %td.top
         %table
           %tr
             %td.left
-              = presenter.description book
+              = short_description book
           %tr
             %table
               %tr

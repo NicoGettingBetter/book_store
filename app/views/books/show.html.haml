@@ -2,12 +2,12 @@
   %h1
     = presenter.book.title
     %small
-      = presenter.by_authors
-      = presenter.authors_links
+      = by_authors presenter.book
+      = authors_links presenter.book
 %table.center
   %tr
     %td
-      = presenter.image presenter.book, class: :large
+      = image presenter.book, class: :large
     %td.top.left
       %table
         %tr
@@ -27,16 +27,12 @@
                           = f.submit t(:add_to_cart)
         %tr
           %td
-            .xs= presenter.description
+            .xs= full_description presenter.book
 .page-header
   %h1
-    = t(:comments)
+    - if presenter.approved_reviews.any?
+      = t(:comments)
     %small
       - if can? :update, Review
         = link_to t(:add_comment), new_review_path(book_id: presenter.book.id)
-- presenter.approved_reviews.each do |review|
-  .page-header
-    = review.user.decorate.full_name
-    %small
-      = rating_for review, 'rating'
-      = review.text
+= render partial: 'review', collection: presenter.approved_reviews, as: :review

@@ -7,7 +7,6 @@ feature 'Settings' do
   end
 
   background do
-    Capybara.current_driver = :webkit
     sign_in @user
     visit settings_path
   end

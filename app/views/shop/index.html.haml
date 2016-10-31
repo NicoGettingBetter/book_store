@@ -5,11 +5,7 @@
       #breadcrumbs
         %h4.left.top= presenter.header
       %table.books
-        - presenter.lines.each do |line|
-          %tr
-            - line.each do |book|
-              %td
-                = link_to (render book), book_path(book.id)
+        = render partial: 'line', collection: presenter.lines, as: :line
     %td.categories
       = render categories_path
 .center

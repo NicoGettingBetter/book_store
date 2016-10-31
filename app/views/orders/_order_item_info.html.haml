@@ -1,0 +1,17 @@
+%tr
+  %td
+    = image order_item.book, class: 'small'
+  %td
+    %table.left
+      %tr
+        %td
+          %h2= order_item.book.title
+      %tr
+        %td
+          = order_item.book.short_description
+  %td
+    = price(order_item.price)
+  %td
+    = order_item.quantity
+  %td
+    = price(order_item.total)
