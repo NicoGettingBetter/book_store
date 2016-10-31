@@ -97,7 +97,7 @@ RailsAdmin.config do |config|
       only ['Book', 'Author', 'Category', 'Delivery', 'Coupon']
     end
     bulk_delete do
-      only ['Book', 'Author', 'Category', 'Review']
+      only ['Book', 'Author', 'Category', 'Review', 'Order']
     end
     show
     edit
